@@ -17,12 +17,12 @@ return new class extends Migration
             $table->string('email')->unique();
             $table->timestamp('email_verified_at')->nullable();
             $table->string('password');
-            $table->enum('jenis_kelamin', ['Laki-Laki', 'Perempuan']);
+            $table->enum('jenis_kelamin', ['Laki-Laki', 'Perempuan'])->nullable();
             $table->string('no_telp')->nullable();
             $table->text('alamat')->nullable();
-            $table->decimal('point')->nullable()->default(0);
-            $table->enum('jenis_mitra', ['Toko Sembako', 'Toko Perabotan', 'Toko Ritel']);
-            $table->enum('role', ['Admin', 'Mitra', 'User']);
+            $table->decimal('point')->nullable()->default(0)->nullable();
+            $table->enum('jenis_mitra', ['Toko Sembako', 'Toko Perabotan', 'Toko Ritel'])->nullable();
+            $table->enum('role', ['Admin', 'Mitra', 'User'])->nullable();
             $table->rememberToken();
             $table->timestamps();
         });

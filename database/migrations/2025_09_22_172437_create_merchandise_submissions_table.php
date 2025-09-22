@@ -16,7 +16,7 @@ return new class extends Migration
             $table->foreignId('users_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('merchandise_id')->constrained('merchandises')->onDelete('cascade');
             $table->date('tgl_transaksi');
-            $table->enum('status', ['Pending','Sukses','Gagal']);
+            $table->enum('status', ['Pending', 'Sukses', 'Gagal']);
             $table->timestamps();
         });
     }
@@ -26,6 +26,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('merchandise__submissions');
+        Schema::dropIfExists('merchandise_submissions');
     }
 };

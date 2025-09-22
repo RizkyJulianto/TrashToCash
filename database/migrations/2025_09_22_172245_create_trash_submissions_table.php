@@ -13,7 +13,7 @@ return new class extends Migration
     {
         Schema::create('trash_submissions', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('users_id')->constrained('users')->onDelete('cascade');
+             $table->foreignId('users_id')->constrained('users')->onDelete('cascade');
             $table->foreignId('tps_id')->constrained('tps')->onDelete('cascade');
             $table->enum('jenis_sampah',['Plastik','Kaca','Kaleng','Kardus','Botol']);
             $table->decimal('berat');
@@ -21,7 +21,7 @@ return new class extends Migration
             $table->decimal('point_reward');
             $table->date('tgl_transaksi');
             $table->enum('status',['Pending','Sukses','Gagal']);
-            $table->string('qrcode');
+            $table->string('qrcode')->nullable();
             $table->timestamps();
         });
     }
@@ -31,6 +31,6 @@ return new class extends Migration
      */
     public function down(): void
     {
-        Schema::dropIfExists('trash__submissions');
+        Schema::dropIfExists('trash_submissions');
     }
 };

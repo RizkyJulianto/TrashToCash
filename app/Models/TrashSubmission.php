@@ -2,12 +2,16 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Trash_Submissions extends Model
+class TrashSubmission extends Model
 {
-    protected $fillable = [
-        'userd_id',
+    /** @use HasFactory<\Database\Factories\TrashSubmissionFactory> */
+    use HasFactory;
+
+     protected $fillable = [
+        'users_id',
         'tps_id',
         'jenis_sampah',
         'berat',
@@ -25,4 +29,5 @@ class Trash_Submissions extends Model
     public function Tps() {
         return $this->belongsTo(Tps::class, 'tps_id');
     }
+
 }

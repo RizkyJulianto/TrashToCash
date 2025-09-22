@@ -17,8 +17,8 @@ return new class extends Migration
             $table->string('nama_produk');
             $table->text('deskripsi');
             $table->integer('stok');
-            $table->string('gambar');
-            $table->string('reward_point')->default(0);
+            $table->string('gambar')->nullable();
+            $table->string('merchandise_point')->default(0);
             $table->timestamps();
         });
     }

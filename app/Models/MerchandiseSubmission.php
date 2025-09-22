@@ -2,10 +2,14 @@
 
 namespace App\Models;
 
+use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Merchandise_Submissions extends Model
+class MerchandiseSubmission extends Model
 {
+    /** @use HasFactory<\Database\Factories\MerchandiseSubmissionFactory> */
+    use HasFactory;
+
     protected $fillable = [
         'users_id',
         'merchandise_id',

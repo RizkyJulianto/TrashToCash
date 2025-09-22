@@ -18,7 +18,7 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'name',
+        'nama',
         'email',
         'password',
         'jenis_kelamin',
@@ -52,13 +52,13 @@ class User extends Authenticatable
         ];
     }
 
-    public function Trash_Submissions() {
-        return $this->hasMany(Trash_Submissions::class, 'users_id');
-    }
+    // public function Trash_Submissions() {
+    //     return $this->hasMany(Trash_Submissions::class, 'users_id');
+    // }
 
-    public function Merchandise_Submissions() {
-        return $this->hasMany(Merchandise_Submissions::class, 'users_id');
-    }
+    // public function Merchandise_Submissions() {
+    //     return $this->hasMany(Merchandise_Submissions::class, 'users_id');
+    // }
 
     public function Merchandise() {
         return $this->hasMany(Merchandise::class, 'mitra_id');
