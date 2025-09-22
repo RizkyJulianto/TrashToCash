@@ -98,7 +98,7 @@ new #[Layout('layouts.guest')] class extends Component
 
         <div class="flex items-center justify-end mt-4">
             <x-primary-button>
-                {{ __('Reset Password') }}
+               Reset Kata Sandi
             </x-primary-button>
         </div>
     </form>
