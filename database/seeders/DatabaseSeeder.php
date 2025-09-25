@@ -22,9 +22,8 @@ class DatabaseSeeder extends Seeder
 
         $this->call([
             TpsSeeder::class,
-            MerchandiseSeeder::class,        
-            MerchandiseSubmissionSeeder::class,        
-            TrashSubmissionSeeder::class,        
+            ProductSeeder::class,        
+            TransactionSeeder::class,        
         ]);
     }
 }

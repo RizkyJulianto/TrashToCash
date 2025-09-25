@@ -13,9 +13,9 @@ return new class extends Migration
     {
         Schema::create('tps', function (Blueprint $table) {
             $table->id();
-            $table->string('nama_tps');
-            $table->text('alamat');
-            $table->string('no_telp');
+            $table->string('name_tps');
+            $table->text('address');
+            $table->string('phone_number');
             $table->timestamps();
         });
     }

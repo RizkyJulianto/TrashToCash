@@ -11,12 +11,12 @@ class Tps extends Model
     use HasFactory;
 
     protected $fillable = [
-        'nama_tps',
-        'alamat',
-        'no_telp',
+        'name_tps',
+        'address',
+        'phone_number',
     ];
 
-    // public function TrashSubmission() {
-    //     return $this->hasMany(Trash_Submissions::class, 'tps_id');
-    // }
+    public function Transactions() {
+        return $this->hasMany(Transaction::class, 'tps_id');
+    }
 }

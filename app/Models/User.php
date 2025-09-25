@@ -18,14 +18,14 @@ class User extends Authenticatable
      * @var list<string>
      */
     protected $fillable = [
-        'nama',
+        'name',
         'email',
         'password',
-        'jenis_kelamin',
-        'no_telp',
-        'alamat',
+        'gender',
+        'phone_number',
+        'address',
         'point',
-        'jenis_mitra',
+        'partner',
         'role',
     ];
 
@@ -52,16 +52,14 @@ class User extends Authenticatable
         ];
     }
 
-    // public function Trash_Submissions() {
-    //     return $this->hasMany(Trash_Submissions::class, 'users_id');
-    // }
+    
 
-    // public function Merchandise_Submissions() {
-    //     return $this->hasMany(Merchandise_Submissions::class, 'users_id');
-    // }
+    public function Products() {
+        return $this->hasMany(Product::class, 'mitra_id');
+    }
 
-    public function Merchandise() {
-        return $this->hasMany(Merchandise::class, 'mitra_id');
+    public function Transactions() {
+        return $this->hasMany(Transaction::class, 'users_id');
     }
 
 }
