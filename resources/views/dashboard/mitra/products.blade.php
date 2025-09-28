@@ -1,64 +1,13 @@
-<x-user-app-layout>
+<x-mitra-app-layout>
     <x-slot name="header">
         <h2 class="font-600 text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Tukar Sampah Jadi Poin
+            Daftar Produk Saya
         </h2>
     </x-slot>
 
     <div class="container max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-4 mt-12">
-        <div
-            class="card bg-white rounded-md shadow-md flex gap-x-4 max-w-full lg:max-w-[700px] py-4 px-6 items-center border border-gray-200">
-            <div class="content">
-                <div class="header flex gap-x-2 items-center">
-                    <div class="title">
-                        <span class="text-[18px] md:text-xl">TPS Terdekat</span>
-                    </div>
-                </div>
-
-                <div class="line bg-gray-200 rounded-md md:w-[650px] lg:w-full h-[1px] my-2"></div>
-                <div class="container flex gap-x-10">
-                    <div class="content">
-                        <ul class="font-light text-sm flex flex-col gap-y-2 md:gap-y-1">
-                            <li>Nama TPS : <span>TPS Sumber Makmur</span></li>
-                            <li>Alamat : Jl.Perintis Kemerdekaan No. 10</li>
-                            <li>Nomor Telepon : +62897654321</li>
-                        </ul>
-                        <x-secondary-button class="mt-3">
-                            Lihat Dipeta
-                        </x-secondary-button>
-                    </div>
-
-                    <div class="line bg-gray-200 rounded-md h-[90px] w-[1px] my-2"></div>
-                    <div class="content">
-                        <ul class="font-light text-sm flex flex-col gap-y-2 md:gap-y-1">
-                            <li>Nama TPS : <span>TPS Sumber Makmur</span></li>
-                            <li>Alamat : Jl.Perintis Kemerdekaan No. 10</li>
-                            <li>Nomor Telepon : +62897654321</li>
-                        </ul>
-                        <x-secondary-button class="mt-3">
-                            Lihat Dipeta
-                        </x-secondary-button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div
-            class="card bg-color-secondary rounded-md shadow-md flex gap-x-4 max-w-full lg:h-[160px] lg:max-w-[450px] py-4 px-6 items-center border border-gray-200">
-            <div class="content">
-                <div class="header flex gap-x-2 items-center">
-                    <div class="title">
-                        <span class="text-white text-[18px] md:text-xl">Panduan Penukaran</span>
-                    </div>
-                </div>
-
-                <div class="line bg-gray-200 rounded-md w-full h-[1px] my-2"></div>
-                <div class="content">
-                    <p class="text-white text-sm md:text-base font-light">Pastikan sampah sudah bersih dan terpilah.
-                        Setelah mengisi
-                        formulir, Kamu akan mendapatkan kode QR untuk ditukarkan di TPS.</p>
-                </div>
-            </div>
-        </div>
+     
+    
     </div>
 
     {{-- Table --}}
@@ -99,7 +48,7 @@
                                 <path clip-rule="evenodd" fill-rule="evenodd"
                                     d="M10 3a1 1 0 011 1v5h5a1 1 0 110 2h-5v5a1 1 0 11-2 0v-5H4a1 1 0 110-2h5V4a1 1 0 011-1z" />
                             </svg>
-                            <a href="{{ route('form.trash-submission') }}">Tambah Pengajuan</a>
+                            <a href="{{ route('form.add-product') }}">Tambah Produk</a>
                         </button>
 
 
@@ -116,17 +65,17 @@
                                         <label for="checkbox-all" class="sr-only">checkbox</label>
                                     </div>
                                 </th>
-                                <th scope="col" class="p-4 font-semibold">Nama TPS</th>
-                                <th scope="col" class="p-4 font-semibold">Jenis Sampah</th>
-                                <th scope="col" class="p-4 font-semibold">Berat</th>
+                                <th scope="col" class="p-4 font-semibold">Foto Produk</th>
+                                <th scope="col" class="p-4 font-semibold">Nama Produk</th>
+                                <th scope="col" class="p-4 font-semibold">Deskripsi</th>
+                                <th scope="col" class="p-4 font-semibold">Stok</th>
                                 <th scope="col" class="p-4 font-semibold">Poin</th>
-                                <th scope="col" class="p-4 font-semibold">Tanggal Penukaran</th>
-                                <th scope="col" class="p-4 font-semibold">Status</th>
+                                <th scope="col" class="p-4 font-semibold">Tanggal Masuk</th>
                             </tr>
                         </thead>
                         <tbody>
 
-                            @foreach ($transaction as $data)
+                            @foreach ($product as $data)
                                 <tr class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
                                     <td class="p-4 w-4">
                                         <div class="flex items-center">
@@ -139,46 +88,20 @@
                                     <th scope="row"
                                         class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         <div class="flex items-center mr-3">
-                                            {{ $data->tps->name_tps }}
+                                            <img src="{{ asset('storage/'.$data->photo) }}" alt="" class="max-h-12 max-w-12">
                                         </div>
                                     </th>
-                                    <td class="px-4 py-3">
-                                        <span
-                                            class="bg-primary-100 text-primary-800 text-base  px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">{{ $data->trash }}</span>
-                                    </td>
-                                    <td class="px-4 py-3">{{ $data->weight }} Kg</td>
-                                    <td class="px-4 py-3 font-normal text-gray-900 whitespace-nowrap dark:text-white">0
-                                    </td>
+                                    
+                                    <td class="px-4 py-3 font-normal text-gray-900 whitespace-nowrap dark:text-white">{{ $data->name_product }} </td>
+                                    <td class="px-4 py-3 font-normal text-gray-900 whitespace-nowrap dark:text-white">{{ $data->description }} </td>
+                                    <td class="px-4 py-3 font-normal text-gray-900 whitespace-nowrap dark:text-white">{{ $data->stock }} </td>
+                                    <td class="px-4 py-3 font-normal text-gray-900 whitespace-nowrap dark:text-white">{{ $data->product_point }} </td>
                                     <td class="px-4 py-3 font-normal text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $data->created_at->format('D, d M Y') }}</td>
                                     <td class="px-4 py-3 font-normal text-gray-900 whitespace-nowrap dark:text-white">
-                                        <div class="flex items-center">
-                                            @if ($data->status === 'Pending')
-                                                <span
-                                                    class="rounded-full bg-yellow-500 px-2.5 py-0.5 text-sm whitespace-nowrap text-white dark:bg-yellow-500 dark:text-white">
-                                                    {{ $data->status }}
-                                                </span>
-                                            @elseif ($data->status === 'Sukses')
-                                                <span
-                                                    class="rounded-full bg-color-primary px-2.5 py-0.5 text-sm whitespace-nowrap text-white dark:bg-color-primary dark:text-white">
-                                                    {{ $data->status }}
-                                                </span>
-                                            @elseif ($data->status === 'Gagal')
-                                                <span
-                                                    class="rounded-full bg-red-500 px-2.5 py-0.5 text-sm whitespace-nowrap text-white dark:bg-red-500 dark:text-white">
-                                                    {{ $data->status }}
-                                                </span>
-                                            @else
-                                                <span
-                                                    class="rounded-full bg-gray-400 px-2.5 py-0.5 text-sm whitespace-nowrap text-white dark:bg-gray-400 dark:text-white">
-                                                    {{ $data->status }}
-                                                </span>
-                                            @endif
-                                        </div>
                                     </td>
                                     <td class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
                                         <div class="flex items-center space-x-4">
-                                            @if ($data->status === 'Pending')
                                                 <button type="button"
                                                     class="py-2 px-3 flex items-center text-sm font-medium text-center text-white bg-yellow-500 rounded-lg hover:bg-primary-800 focus:ring-4 focus:outline-none focus:ring-primary-300 dark:bg-primary-600 dark:hover:bg-primary-700 dark:focus:ring-primary-800">
                                                     <svg xmlns="http://www.w3.org/2000/svg"
@@ -191,9 +114,9 @@
                                                             clip-rule="evenodd" />
                                                     </svg>
                                                     <a
-                                                        href="{{ route('form-edit.trash-submission', $data->id) }}">Edit</a>
+                                                        href="{{ route('form.edit-product', $data->id) }}">Edit</a>
                                                 </button>
-                                            @endif
+                                            
                                             <button type="button"
                                                 class="py-2 px-3 flex items-center text-sm font-medium text-center text-gray-900 focus:outline-none bg-white rounded-lg border border-gray-200 hover:bg-gray-100 hover:text-primary-700 focus:z-10 focus:ring-4 focus:ring-gray-200 dark:focus:ring-gray-700 dark:bg-gray-800 dark:text-gray-400 dark:border-gray-600 dark:hover:text-white dark:hover:bg-gray-700">
                                                 <svg xmlns="http://www.w3.org/2000/svg" viewbox="0 0 24 24"
@@ -203,9 +126,8 @@
                                                         d="M1.323 11.447C2.811 6.976 7.028 3.75 12.001 3.75c4.97 0 9.185 3.223 10.675 7.69.12.362.12.752 0 1.113-1.487 4.471-5.705 7.697-10.677 7.697-4.97 0-9.186-3.223-10.675-7.69a1.762 1.762 0 010-1.113zM17.25 12a5.25 5.25 0 11-10.5 0 5.25 5.25 0 0110.5 0z" />
                                                 </svg>
                                                 <a
-                                                    href="{{ route('detail.trash-submission', $data->id) }}">Preview</a>
+                                                    href="{{ route('detail.product', $data->id) }}">Preview</a>
                                             </button>
-                                           
                                         </div>
                                     </td>
                                 </tr>
@@ -215,7 +137,7 @@
                     </table>
                 </div>
 
-                <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
+                {{-- <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
                     aria-label="Table navigation">
                     <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
                         Menampilkan
@@ -233,7 +155,7 @@
                     <div class="mt-7">
                         {{ $transaction->appends(request()->query())->links() }}
                     </div>
-                </nav>
+                </nav> --}}
             </div>
         </div>
     </section>
@@ -244,4 +166,4 @@
 
 
 
-</x-user-app-layout>
+</x-mitra-app-layout>

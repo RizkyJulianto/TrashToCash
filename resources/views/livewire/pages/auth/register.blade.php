@@ -48,7 +48,7 @@
                             <div class="my-4">
                                 <x-input-label for="name" :value="__('Nama')" />
                                 <x-text-input id="name" class="block mt-1 w-full" type="text" name="name"
-                                     autofocus />
+                                     autofocus value="{{ old('name') }}"/>
                                 <x-input-error :messages="$errors->get('name')" class="mt-2" />
                             </div>
 
@@ -57,7 +57,7 @@
                             <div class="my-4">
                                 <x-input-label for="email" :value="__('Email')" />
                                 <x-text-input id="email" class="block mt-1 w-full" type="email" name="email"
-                                     autofocus autocomplete="email" />
+                                     autofocus autocomplete="email" value="{{ old('email') }}" />
                                 <x-input-error :messages="$errors->get('email')" class="mt-2" />
                             </div>
 
@@ -65,7 +65,7 @@
                             <div class="mt-4">
                                 <x-input-label for="password" :value="__('Password')" />
                                 <x-text-input id="password" class="block mt-1 w-full" type="password" name="password"
-                                     autocomplete="current-password" />
+                                     autocomplete="current-password" value="{{ old('password') }}"/>
                                 <x-input-error :messages="$errors->get('password')" class="mt-2" />
                             </div>
 
@@ -73,7 +73,7 @@
                             <div class="mt-4">
                                 <x-input-label for="password_confirmation" :value="__('Konfirmasi Password')" />
                                 <x-text-input id="password_confirmation" class="block mt-1 w-full" type="password" name="password_confirmation"
-                                     autocomplete="current-password" />
+                                     autocomplete="current-password" value="{{ old('password_confirmation') }}"/>
                                 <x-input-error :messages="$errors->get('password_confirmation')" class="mt-2" />
                             </div>
 

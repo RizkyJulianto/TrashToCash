@@ -25,7 +25,7 @@
 
 <body class="font-fredoka antialiased">
     <div class="min-h-screen bg-gray-100 dark:bg-gray-900">
-        <livewire:layout.user.user-navigation />
+        <livewire:layout.mitra.mitra-navigation />
 
         @if (isset($header))
             <header class="bg-white dark:bg-gray-800 shadow">
@@ -75,17 +75,17 @@
 
 
     <script>
-        function confirmCancel(event, form) {
+        function confirmDelete(event, form) {
             event.preventDefault();
 
             Swal.fire({
                 title: "Apakah Kamu Yakin?",
-                text: "Akan batalkan pengajuan ini!",
+                text: "Akan hapus produk ini!",
                 icon: "warning",
                 showCancelButton: true,
                 confirmButtonColor: "#d33",
                 cancelButtonColor: "#c4c4c4",
-                confirmButtonText: "Ya, Batalkan!",
+                confirmButtonText: "Ya, Hapus!",
                 cancelButtonText: 'Tidak'
             }).then((result) => {
                 if (result.isConfirmed) {

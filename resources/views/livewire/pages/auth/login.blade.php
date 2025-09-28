@@ -42,9 +42,7 @@
                             <button
                                 class="w-full max-w-xs font-bold shadow-sm rounded-lg py-3 bg-green-100 text-gray-800 flex items-center justify-center transition-all duration-300 ease-in-out focus:outline-none hover:shadow focus:shadow-sm focus:shadow-outline">
 
-                                <span class="ml-4">
-                                    Daftar menjadi mitra
-                                </span>
+                                <a href="{{ route('form-mitra.register') }}"> Daftar menjadi mitra</a>
                             </button>
 
                         </div>
@@ -61,7 +59,7 @@
                             <!-- Email Address -->
 
                             <div>
-                                <x-input-label for="email" :value="__('Email')" />
+                                <x-input-label for="email" :value="__('Email')"/>
                                 <x-text-input id="email" class="block mt-1 w-full" type="email" name="email"
                                     autofocus value="{{ old('email') }}" />
                                 <x-input-error :messages="$errors->get('email')" class="mt-2" />

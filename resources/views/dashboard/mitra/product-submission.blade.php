@@ -5,56 +5,9 @@
         </h2>
     </x-slot>
 
-    <div class="py-12">
-        <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-            <div class="bg-white dark:bg-gray-800 overflow-hidden shadow-sm sm:rounded-lg">
-                <div class="p-6 font-fredoka text-xl text-gray-900 dark:text-gray-100">
-                    <h2>Selamat Datang, <span>{{ $user->name }}</span></h2>
-                </div>
-            </div>
-        </div>
-    </div>
+   
 
-    <div class="container max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex flex-col md:flex-row gap-4">
-        <div
-            class="card bg-white rounded-md shadow-md flex gap-x-4 max-w-full lg:max-w-[300px] py-4 px-6 items-center border border-gray-200">
-            <div class="content">
-                <div class="header flex gap-x-2 items-center">
-                    <div class="icon">
-                        <i class="fa-solid fa-folder text-xl text-yellow-300"></i>
-                    </div>
-                    <div class="point">
-                        <span class="text-[26px] md:text-2xl lg:text-3xl opacity-80">{{ $recentSubmission->count() }}</span>
-                    </div>
-                </div>
-                <div class="title">
-                    <span class="text-gray-500  lg:text-[18px] font-light">Total pengajuan produk</span>
-                </div>
-                <x-primary-button class="mt-3">
-                    <a href="{{ route('point-submission') }}">Verifikasi sekarang</a>
-                </x-primary-button>
-            </div>
-        </div>
-        <div
-            class="card bg-white rounded-md shadow-md flex gap-x-4 max-w-full lg:max-w-[300px] py-4 px-6 items-center border border-gray-200">
-            <div class="content">
-                <div class="header flex gap-x-2 items-center">
-                    <div class="icon">
-                        <i class="fa-solid fa-cart-shopping text-xl text-green-700"></i>
-                    </div>
-                    <div class="point">
-                        <span class="text-[26px] md:text-2xl lg:text-3xl opacity-80">{{ $totalProduct }} </span>
-                    </div>
-                </div>
-                <div class="title">
-                    <span class="text-gray-500 lg:text-[18px] font-light">Total produk</span>
-                </div>
-                <x-secondary-button class="mt-3">
-                    <a href="{{ route('trash-submission') }}">Tambah Produk sekarang</a>
-                </x-secondary-button>
-            </div>
-        </div>
-    </div>
+    
 
     {{-- Table Submissions --}}
     <section class="dark:bg-gray-900 p-3 sm:p-5 antialiased">
@@ -162,9 +115,7 @@
                         of
                         <span class="font-semibold text-gray-900 dark:text-white">20</span>
                     </span>
-                    <x-secondary-button>
-                        <a href="{{ route('list.product-submissions') }}">Lihat Semua Pengajuan</a>
-                    </x-secondary-button>
+                  
                 </nav>
             </div>
         </div>

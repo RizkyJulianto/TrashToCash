@@ -27,7 +27,7 @@ return new class extends Migration
             $table->decimal('points')->nullable();
             $table->text('description')->nullable();
             $table->decimal('totals')->nullable();
-            $table->enum('status', ['Pending', 'Sukses', 'Gagal']);
+            $table->enum('status', ['Pending', 'Sukses', 'Gagal', 'Dibatalkan']);
             $table->string('qrcode')->nullable();
             $table->timestamps();
         });

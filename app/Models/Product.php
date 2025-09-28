@@ -16,7 +16,7 @@ class Product extends Model
         'description',
         'stock',
         'photo',
-        'point',
+        'product_point'
     ];
 
 
@@ -25,6 +25,6 @@ class Product extends Model
     }
 
     public function Transactions() {
-        return $this->hasMany(Transaction::class, 'merchandise_id');
+        return $this->hasMany(Transaction::class, 'product_id');
     }
 }

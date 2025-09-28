@@ -8,7 +8,7 @@ use Livewire\Volt\Component;
 
 new class extends Component
 {
-    public string $nama = '';
+    public string $name = '';
     public string $email = '';
 
     /**
@@ -16,7 +16,7 @@ new class extends Component
      */
     public function mount(): void
     {
-        $this->nama = Auth::user()->nama;
+        $this->name = Auth::user()->name;
         $this->email = Auth::user()->email;
     }
 
@@ -105,10 +105,10 @@ new class extends Component
         </div>
 
         <div class="flex items-center gap-4">
-            <x-primary-button>{{ __('Save') }}</x-primary-button>
+            <x-primary-button>Simpan</x-primary-button>
 
             <x-action-message class="me-3" on="profile-updated">
-                {{ __('Saved.') }}
+               Tersimpan
             </x-action-message>
         </div>
     </form>
