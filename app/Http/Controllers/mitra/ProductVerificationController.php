@@ -8,14 +8,14 @@ use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
-class ProductSubmissionController extends Controller
+class ProductVerificationController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        $user = Auth::user();
+          $user = Auth::user();
        $query = Transaction::where('users_id', $user->id);
             // if ($request->filled('search')) {
             //     $search = $request->input('search');

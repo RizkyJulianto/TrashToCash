@@ -40,7 +40,7 @@ new class extends Component
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('list.product-submissions')" :active="request()->routeIs('point-submission')" wire:navigate>
+                    <x-nav-link :href="route('list.product-submissions')" :active="request()->routeIs('list.product-submissions')" wire:navigate>
                         Pengajuan Produk
                     </x-nav-link>
                 </div>

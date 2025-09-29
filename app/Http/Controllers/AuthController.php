@@ -125,7 +125,7 @@ class AuthController extends Controller
         ]);
 
         if ($validator->fails()) {
-            return redirect()->route('mitra.register')->withErrors($validator)->withInput();
+            return redirect()->route('form-mitra.register')->withErrors($validator)->withInput();
         };
 
         $users = User::create([
@@ -138,5 +138,16 @@ class AuthController extends Controller
         ]);
         
         return redirect()->route('user.login')->with('success', 'Pendaftaran berhasil! Silakan login.');
+    }
+
+    public function logout(Request $request) {
+        Auth::logout();
+
+        $request->session()->invalidate();
+        $request->session()->regenerateToken();
+
+        return redirect('/')->with('success', 'Kamu berhasil logout');
+
+
     }
 }

@@ -19,9 +19,11 @@
                 <div class="container flex gap-x-10">
                     <div class="content">
                         <ul class="font-light text-sm flex flex-col gap-y-2 md:gap-y-1">
-                            <li>Nama TPS : <span>TPS Sumber Makmur</span></li>
+                            @foreach ($tpsList as $tps)
+                            <li>Nama TPS : <span>{{ $tps->name_tps }}</span></li>
                             <li>Alamat : Jl.Perintis Kemerdekaan No. 10</li>
                             <li>Nomor Telepon : +62897654321</li>
+                            @endforeach
                         </ul>
                         <x-secondary-button class="mt-3">
                             Lihat Dipeta
