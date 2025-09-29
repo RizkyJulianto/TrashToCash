@@ -15,6 +15,7 @@ class Transaction extends Model
         'tps_id',
         'product_id',
         'type',
+        'quantity',
         'type_bank',
         'type_wallet',
         'phone_number',

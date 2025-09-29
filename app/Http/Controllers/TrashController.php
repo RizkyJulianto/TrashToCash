@@ -19,9 +19,11 @@ class TrashController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $transaction = Transaction::where('users_id', $user->id)->with('Tps')->orderBy('created_at', 'desc')->paginate(5);
+        $recentSubmission = Transaction::with(['Users', 'Tps'])->where('type', 'Sampah')->whereHas('Tps', function ($query) use ($user) {
+            $query->where('tps_id', $user->id);
+        })->orderBy('created_at', 'desc')->paginate(5);
         $tpsList = Tps::all();
-        return view('dashboard.user.trash-submission', compact('transaction', 'tpsList'));
+        return view('dashboard.user.trash-submission', compact('recentSubmission', 'tpsList'));
     }
 
     /**
@@ -113,7 +115,7 @@ class TrashController extends Controller
         if ($transaction->status === 'Pending') {
             $transaction->status = 'Dibatalkan';
             $transaction->save();
-            return redirect()->back()->with('success', 'Pengajuan Sampah berhasil dibatalkan');
+            return redirect()->route('trash-submission')->with('success', 'Pengajuan Sampah berhasil dibatalkan');
         } else {
             return redirect()->back()->with('error', 'Pengajuan sampah tidak dapat dibatalkan');
         }
@@ -186,7 +188,7 @@ class TrashController extends Controller
         return redirect()->route('trash-submission', $transaction->id)->with('success', 'Pengajuan sampah berhasil diperbarui.');
     }
 
-   public function downloadQrCode(Transaction $transaction)
+    public function downloadQrCode(Transaction $transaction)
     {
         // Pastikan QR code ada dan file fisik ada di storage
         if ($transaction->qrcode && Storage::disk('public')->exists($transaction->qrcode)) {
@@ -194,7 +196,7 @@ class TrashController extends Controller
             $fileName = 'qrcode-' . $transaction->id . '.svg';
 
             // Menggunakan facade Storage untuk mengunduh file
-            return Storage::download($filePath,$fileName);
+            return Storage::download($filePath, $fileName);
         }
 
         return redirect()->back()->with('error', 'QR Code tidak ditemukan atau file tidak ada.');

@@ -6,56 +6,19 @@
     </x-slot>
 
     <div class="container max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-4 mt-12">
+       
         <div
-            class="card bg-white rounded-md shadow-md flex gap-x-4 max-w-full lg:max-w-[700px] py-4 px-6 items-center border border-gray-200">
+            class="card bg-blue-50 border-2 border-blue-400 border-dashed rounded-md shadow-md flex gap-x-4 max-w-full lg:h-[160px] lg:max-w-[450px] py-4 px-6 items-center ">
             <div class="content">
                 <div class="header flex gap-x-2 items-center">
                     <div class="title">
-                        <span class="text-[18px] md:text-xl">TPS Terdekat</span>
+                        <span class="text-blue-700 text-[18px] md:text-xl">Panduan Penukaran</span>
                     </div>
                 </div>
 
-                <div class="line bg-gray-200 rounded-md md:w-[650px] lg:w-full h-[1px] my-2"></div>
-                <div class="container flex gap-x-10">
-                    <div class="content">
-                        <ul class="font-light text-sm flex flex-col gap-y-2 md:gap-y-1">
-                            @foreach ($tpsList as $tps)
-                            <li>Nama TPS : <span>{{ $tps->name_tps }}</span></li>
-                            <li>Alamat : Jl.Perintis Kemerdekaan No. 10</li>
-                            <li>Nomor Telepon : +62897654321</li>
-                            @endforeach
-                        </ul>
-                        <x-secondary-button class="mt-3">
-                            Lihat Dipeta
-                        </x-secondary-button>
-                    </div>
-
-                    <div class="line bg-gray-200 rounded-md h-[90px] w-[1px] my-2"></div>
-                    <div class="content">
-                        <ul class="font-light text-sm flex flex-col gap-y-2 md:gap-y-1">
-                            <li>Nama TPS : <span>TPS Sumber Makmur</span></li>
-                            <li>Alamat : Jl.Perintis Kemerdekaan No. 10</li>
-                            <li>Nomor Telepon : +62897654321</li>
-                        </ul>
-                        <x-secondary-button class="mt-3">
-                            Lihat Dipeta
-                        </x-secondary-button>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <div
-            class="card bg-color-secondary rounded-md shadow-md flex gap-x-4 max-w-full lg:h-[160px] lg:max-w-[450px] py-4 px-6 items-center border border-gray-200">
-            <div class="content">
-                <div class="header flex gap-x-2 items-center">
-                    <div class="title">
-                        <span class="text-white text-[18px] md:text-xl">Panduan Penukaran</span>
-                    </div>
-                </div>
-
-                <div class="line bg-gray-200 rounded-md w-full h-[1px] my-2"></div>
+                <div class="line bg-gray-300 rounded-md w-full h-[1px] my-2"></div>
                 <div class="content">
-                    <p class="text-white text-sm md:text-base font-light">Pastikan sampah sudah bersih dan terpilah.
+                    <p class="text-blue-700 text-sm md:text-base font-light">Pastikan sampah sudah bersih dan terpilah.
                         Setelah mengisi
                         formulir, Kamu akan mendapatkan kode QR untuk ditukarkan di TPS.</p>
                 </div>
@@ -128,7 +91,7 @@
                         </thead>
                         <tbody>
 
-                            @foreach ($transaction as $data)
+                            @foreach ($recentSubmission as $data)
                                 <tr class="border-b dark:border-gray-600 hover:bg-gray-100 dark:hover:bg-gray-700">
                                     <td class="p-4 w-4">
                                         <div class="flex items-center">
@@ -148,9 +111,16 @@
                                         <span
                                             class="bg-primary-100 text-primary-800 text-base  px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">{{ $data->trash }}</span>
                                     </td>
-                                    <td class="px-4 py-3">{{ $data->weight }} Kg</td>
-                                    <td class="px-4 py-3 font-normal text-gray-900 whitespace-nowrap dark:text-white">0
-                                    </td>
+                                    <td class="px-4 py-3">{{ rtrim(rtrim(number_format($data->weight,2),'0'), '.') }} Kg</td>
+                                    @if ($data->points !== 0)
+                                        <td class="px-4 py-3 text-green-500">
+                                            + {{ $data->points }}
+                                        </td>
+                                    @else
+                                        <td class="px-4 py-3">
+                                            {{ $data->points }}
+                                        </td>
+                                    @endif
                                     <td class="px-4 py-3 font-normal text-gray-900 whitespace-nowrap dark:text-white">
                                         {{ $data->created_at->format('D, d M Y') }}</td>
                                     <td class="px-4 py-3 font-normal text-gray-900 whitespace-nowrap dark:text-white">
@@ -222,18 +192,18 @@
                     <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
                         Menampilkan
                         <span
-                            class="font-semibold text-gray-900 dark:text-white">{{ $transaction->firstItem() }}</span>
+                            class="font-semibold text-gray-900 dark:text-white">{{ $recentSubmission->firstItem() }}</span>
                         sampai
                         <span
-                            class="font-semibold text-gray-900 dark:text-white">{{ $transaction->lastItem() }}</span>
+                            class="font-semibold text-gray-900 dark:text-white">{{ $recentSubmission->lastItem() }}</span>
                         dari
-                        <span class="font-semibold text-gray-900 dark:text-white">{{ $transaction->total() }}</span>
-                        transaksi
+                        <span class="font-semibold text-gray-900 dark:text-white">{{ $recentSubmission->total() }}</span>
+                        laporan
                     </span>
 
                     
                     <div class="mt-7">
-                        {{ $transaction->appends(request()->query())->links() }}
+                        {{ $recentSubmission->appends(request()->query())->links() }}
                     </div>
                 </nav>
             </div>

@@ -39,7 +39,7 @@ class ProductVerificationController extends Controller
             })->orderBy('created_at','desc')->get();
            
 
-            return view('dashboard.mitra.product-submission', compact('user', 'transaction', 'totalProduct','recentSubmission'));
+            return view('dashboard.mitra.product-verifications', compact('user', 'transaction', 'totalProduct','recentSubmission'));
     }
 
     /**

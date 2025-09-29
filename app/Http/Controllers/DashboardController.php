@@ -27,14 +27,7 @@ class DashboardController extends Controller
             }
 
             
-            $transaction = $query->with('Tps')
-                                  ->orderBy('created_at', 'desc')
-                                  ->get();
-            
-            if($transaction->isEmpty() && $request->filled('search')) {
-                return redirect()->back()->with('warning', 'Tidak ada data ditemukan! Mohon periksa kata kunci anda');
-            }
-            
+        
             
             $totalProduct = Product::where('mitra_id', $user->id)->count('id');
             $recentSubmission = Transaction::with(['Users','Products'])->where('type', 'Barang')->whereHas('Products', function($query) use ($user) {
@@ -53,17 +46,13 @@ class DashboardController extends Controller
             }
 
             
-            $transaction = $query->with('Tps')
-                                  ->orderBy('created_at', 'desc')
-                                  ->get();
-            
-            if($transaction->isEmpty() && $request->filled('search')) {
-                return redirect()->back()->with('warning', 'Tidak ada data ditemukan! Mohon periksa kata kunci anda');
-            }
+            $recentSubmission = Transaction::with(['Users','Tps'])->where('type', 'Sampah')->whereHas('Tps', function($query) use ($user) {
+                $query->where('tps_id', $user->id);
+            })->orderBy('created_at','desc')->paginate(5);
             
             $totalWeight = Transaction::where('users_id', $user->id)->sum('weight');
 
-            return view('dashboard.user.user', compact('user', 'transaction', 'totalWeight'));
+            return view('dashboard.user.user', compact('user', 'recentSubmission', 'totalWeight'));
         }   
     }
 }

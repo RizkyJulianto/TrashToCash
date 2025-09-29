@@ -39,6 +39,11 @@ new class extends Component {
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('list.tps')" :active="request()->routeIs('list.tps')" wire:navigate>
+                        TPS
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('point-submission')" :active="request()->routeIs('point-submission')" wire:navigate>
                         Tukar Poin
                     </x-nav-link>

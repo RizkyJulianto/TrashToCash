@@ -6,8 +6,8 @@
     </x-slot>
 
 
-     <div class="container max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-4 mt-12">
-         <div
+    <div class="container max-w-7xl mx-auto px-3 sm:px-6 lg:px-8 flex flex-col lg:flex-row gap-4 mt-12">
+        <div
             class="card bg-blue-50 border-2 border-blue-400 border-dashed rounded-md shadow-md flex gap-x-4 max-w-full  lg:max-w-[450px] py-4 px-6 items-center">
             <div class="content">
                 <div class="header flex gap-x-2 items-center">
@@ -18,15 +18,19 @@
 
                 <div class="line bg-gray-300 rounded-md w-full h-[1px] my-2"></div>
                 <div class="content">
-                    <p class="text-blue-700 text-sm md:text-base font-light text-justify ">Jika Anda menginginkan barang fisik, Anda bisa menukar poin dengan berbagai produk menarik yang tersedia di katalog kami. Cukup telusuri pilihan yang ada, pilih produk favorit Anda, dan klik 'Tukar Poin'. Poin akan otomatis terpotong, dan Anda akan mendapatkan konfirmasi untuk mengambil barang di lokasi mitra.</p>
+                    <p class="text-blue-700 text-sm md:text-base font-light text-justify ">Jika Anda menginginkan barang
+                        fisik, Anda bisa menukar poin dengan berbagai produk menarik yang tersedia di katalog kami.
+                        Cukup telusuri pilihan yang ada, pilih produk favorit Anda, dan klik 'Tukar Poin'. Poin akan
+                        otomatis terpotong, dan Anda akan mendapatkan konfirmasi untuk mengambil barang di lokasi mitra.
+                    </p>
                 </div>
 
                 <x-secondary-button class="mt-3">
-                  <a href="{{ route('product') }}">Lihat Katalog Produk</a>
+                    <a href="{{ route('products') }}">Lihat Katalog Produk</a>
                 </x-secondary-button>
             </div>
-        </div>  
-         <div
+        </div>
+        <div
             class="card bg-yellow-50 border-2 border-yellow-400 border-dashed rounded-md shadow-md flex gap-x-4 max-w-full  lg:max-w-[450px] py-4 px-6 items-center">
             <div class="content">
                 <div class="header flex gap-x-2 items-center">
@@ -37,14 +41,18 @@
 
                 <div class="line bg-gray-300 rounded-md w-full h-[1px] my-2"></div>
                 <div class="content">
-                    <p class="text-yellow-700 text-sm md:text-base font-light text-justify">Jika Anda lebih memilih uang, Anda bisa menariknya langsung ke rekening bank atau dompet digital. Isi formulir penarikan dengan jumlah poin yang Anda inginkan dan detail rekening Anda. Tim kami akan segera memprosesnya. Mohon berikan waktu 1-3 hari kerja untuk verifikasi dan transfer dana. Setelah berhasil, Anda akan menerima notifikasi.</p>
+                    <p class="text-yellow-700 text-sm md:text-base font-light text-justify">Jika Anda lebih memilih
+                        uang, Anda bisa menariknya langsung ke rekening bank atau dompet digital. Isi formulir penarikan
+                        dengan jumlah poin yang Anda inginkan dan detail rekening Anda. Tim kami akan segera
+                        memprosesnya. Mohon berikan waktu 1-3 hari kerja untuk verifikasi dan transfer dana. Setelah
+                        berhasil, Anda akan menerima notifikasi.</p>
                 </div>
 
                 <x-yellow-button class="mt-3">
                     <a href="{{ route('cash') }}"> Tukar Uang</a>
                 </x-yellow-button>
             </div>
-        </div>  
+        </div>
     </div>
 
 
@@ -120,8 +128,9 @@
                         <thead class="text-xs  text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
                             <tr>
                                 <th scope="col" class="px-4 py-3 font-semibold">Jenis Penukaran</th>
-                                <th scope="col" class="px-4 py-3 font-semibold">Tanggal Penukaran</th>
+                                <th scope="col" class="px-4 py-3 font-semibold">Deskripsi</th>
                                 <th scope="col" class="px-4 py-3 font-semibold">Poin</th>
+                                <th scope="col" class="px-4 py-3 font-semibold">Tanggal Penukaran</th>
                                 <th scope="col" class="px-4 py-3 font-semibold">Status</th>
                                 <th scope="col" class="px-4 py-3 font-semibold">
                                     <span class="sr-only">Actions</span>
@@ -129,46 +138,75 @@
                             </tr>
                         </thead>
                         <tbody>
-                            <tr class="border-b dark:border-gray-700">
-                                <th scope="row"
-                                    class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
-                                    Penukaran Merchandise</th>
-                                <td class="px-4 py-3">Selasa, 22 Januari 2025</td>
-                                <td class="px-4 py-3 text-red-500">- 300</td>
-                                <td class="px-4 py-3">
-                                    <span
-                                        class="rounded-full bg-color-primary px-2.5 py-0.5 text-sm whitespace-nowrap text-white dark:bg-color-primary dark:text-white">
-                                        Sukses
-                                    </span>
-                                </td>
-                                <td class="px-4 py-3 flex items-center justify-end">
-                                    <button id="apple-imac-27-dropdown-button"
-                                        data-dropdown-toggle="apple-imac-27-dropdown"
-                                        class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
-                                        type="button">
-                                        <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
-                                            viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
-                                            <path
-                                                d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
-                                        </svg>
-                                    </button>
-                                    <div id="apple-imac-27-dropdown"
-                                        class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
-                                        <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
-                                            aria-labelledby="apple-imac-27-dropdown-button">
-                                            <li>
+                            @foreach ($recentSubmission as $data)
+                                <tr class="border-b dark:border-gray-700">
+                                    <th scope="row"
+                                        class="px-4 py-3 font-medium text-gray-900 whitespace-nowrap dark:text-white">
+                                        Penukaran {{ $data->type }}</th>
+                                    <td class="px-4 py-3">{{ $data->description }}</td>
+
+                                    @if ($data->points !== 0)
+                                        <td class="px-4 py-3 text-red-500">
+                                            - {{ $data->points }}
+                                        </td>
+                                    @else
+                                        <td class="px-4 py-3">
+                                            {{ $data->points }}
+                                        </td>
+                                    @endif
+                                    <td class="px-4 py-3 ">{{ $data->created_at->format('D, d M Y') }}</td>
+                                    <td class="px-4 py-3">
+                                        @if ($data->status === 'Pending')
+                                            <span
+                                                class="rounded-full bg-yellow-500 px-2.5 py-0.5 text-sm whitespace-nowrap text-white dark:bg-yellow-500 dark:text-white">
+                                                {{ $data->status }}
+                                            </span>
+                                        @elseif ($data->status === 'Sukses')
+                                            <span
+                                                class="rounded-full bg-color-primary px-2.5 py-0.5 text-sm whitespace-nowrap text-white dark:bg-color-primary dark:text-white">
+                                                {{ $data->status }}
+                                            </span>
+                                        @elseif ($data->status === 'Gagal')
+                                            <span
+                                                class="rounded-full bg-red-500 px-2.5 py-0.5 text-sm whitespace-nowrap text-white dark:bg-red-500 dark:text-white">
+                                                {{ $data->status }}
+                                            </span>
+                                        @else
+                                            <span
+                                                class="rounded-full bg-gray-400 px-2.5 py-0.5 text-sm whitespace-nowrap text-white dark:bg-gray-400 dark:text-white">
+                                                {{ $data->status }}
+                                            </span>
+                                        @endif
+                                    </td>
+                                    <td class="px-4 py-3 flex items-center justify-end">
+                                        <button id="apple-imac-27-dropdown-button"
+                                            data-dropdown-toggle="apple-imac-27-dropdown"
+                                            class="inline-flex items-center p-0.5 text-sm font-medium text-center text-gray-500 hover:text-gray-800 rounded-lg focus:outline-none dark:text-gray-400 dark:hover:text-gray-100"
+                                            type="button">
+                                            <svg class="w-5 h-5" aria-hidden="true" fill="currentColor"
+                                                viewbox="0 0 20 20" xmlns="http://www.w3.org/2000/svg">
+                                                <path
+                                                    d="M6 10a2 2 0 11-4 0 2 2 0 014 0zM12 10a2 2 0 11-4 0 2 2 0 014 0zM16 12a2 2 0 100-4 2 2 0 000 4z" />
+                                            </svg>
+                                        </button>
+                                        <div id="apple-imac-27-dropdown"
+                                            class="hidden z-10 w-44 bg-white rounded divide-y divide-gray-100 shadow dark:bg-gray-700 dark:divide-gray-600">
+                                            <ul class="py-1 text-sm text-gray-700 dark:text-gray-200"
+                                                aria-labelledby="apple-imac-27-dropdown-button">
+                                                <li>
+                                                    <a href="#"
+                                                        class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
+                                                </li>
+
+                                            </ul>
+                                            <div class="py-1">
                                                 <a href="#"
-                                                    class="block py-2 px-4 hover:bg-gray-100 dark:hover:bg-gray-600 dark:hover:text-white">Show</a>
-                                            </li>
-                                            
-                                        </ul>
-                                        <div class="py-1">
-                                            <a href="#"
-                                                class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+                                                    class="block py-2 px-4 text-sm text-gray-700 hover:bg-gray-100 dark:hover:bg-gray-600 dark:text-gray-200 dark:hover:text-white">Delete</a>
+                                            </div>
                                         </div>
-                                    </div>
-                                </td>
-                            </tr>
+                                    </td>
+                                </tr>
+                            @endforeach
 
 
                         </tbody>
@@ -177,57 +215,22 @@
                 <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
                     aria-label="Table navigation">
                     <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                        Showing
-                        <span class="font-semibold text-gray-900 dark:text-white">1-10</span>
-                        of
-                        <span class="font-semibold text-gray-900 dark:text-white">1000</span>
+                        Menampilkan
+                        <span
+                            class="font-semibold text-gray-900 dark:text-white">{{ $recentSubmission->firstItem() }}</span>
+                        sampai
+                        <span
+                            class="font-semibold text-gray-900 dark:text-white">{{ $recentSubmission->lastItem() }}</span>
+                        dari
+                        <span
+                            class="font-semibold text-gray-900 dark:text-white">{{ $recentSubmission->total() }}</span>
+                        laporan
                     </span>
-                    <ul class="inline-flex items-stretch -space-x-px">
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center h-full py-1.5 px-3 ml-0 text-gray-500 bg-white rounded-l-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                                <span class="sr-only">Previous</span>
-                                <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M12.707 5.293a1 1 0 010 1.414L9.414 10l3.293 3.293a1 1 0 01-1.414 1.414l-4-4a1 1 0 010-1.414l4-4a1 1 0 011.414 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">1</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">2</a>
-                        </li>
-                        <li>
-                            <a href="#" aria-current="page"
-                                class="flex items-center justify-center text-sm z-10 py-2 px-3 leading-tight text-primary-600 bg-primary-50 border border-primary-300 hover:bg-primary-100 hover:text-primary-700 dark:border-gray-700 dark:bg-gray-700 dark:text-white">3</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">...</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center text-sm py-2 px-3 leading-tight text-gray-500 bg-white border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">100</a>
-                        </li>
-                        <li>
-                            <a href="#"
-                                class="flex items-center justify-center h-full py-1.5 px-3 leading-tight text-gray-500 bg-white rounded-r-lg border border-gray-300 hover:bg-gray-100 hover:text-gray-700 dark:bg-gray-800 dark:border-gray-700 dark:text-gray-400 dark:hover:bg-gray-700 dark:hover:text-white">
-                                <span class="sr-only">Next</span>
-                                <svg class="w-5 h-5" aria-hidden="true" fill="currentColor" viewbox="0 0 20 20"
-                                    xmlns="http://www.w3.org/2000/svg">
-                                    <path fill-rule="evenodd"
-                                        d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z"
-                                        clip-rule="evenodd" />
-                                </svg>
-                            </a>
-                        </li>
-                    </ul>
+
+
+                    <div class="mt-7">
+                        {{ $recentSubmission->appends(request()->query())->links() }}
+                    </div>
                 </nav>
             </div>
         </div>

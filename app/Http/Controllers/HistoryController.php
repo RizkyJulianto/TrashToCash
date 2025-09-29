@@ -12,7 +12,7 @@ class HistoryController extends Controller
      */
     public function index()
     {
-        $transaction = Transaction::all();
+        $transaction = Transaction::orderBy('created_at','desc')->paginate(5);
         return view('dashboard.user.history', compact('transaction'));
     }
 

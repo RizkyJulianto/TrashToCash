@@ -2,7 +2,9 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class PointController extends Controller
 {
@@ -11,7 +13,9 @@ class PointController extends Controller
      */
     public function index()
     {
-        return view('dashboard.user.point-submission');
+        $user = Auth::user();
+        $recentSubmission = Transaction::whereIn('type',['Barang','Tunai'])->orderBy('created_at', 'desc')->paginate(5);
+        return view('dashboard.user.point-submission', compact('recentSubmission'));
     }
 
     /**

@@ -2,7 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Product;
+use App\Models\Transaction;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProductSubmissionController extends Controller
 {
@@ -11,54 +15,52 @@ class ProductSubmissionController extends Controller
      */
     public function index()
     {
-        //
+        $products = Product::all();
+        return view('dashboard.user.product-submission', compact('products'));
     }
 
-    /**
-     * Show the form for creating a new resource.
-     */
-    public function create()
-    {
-        //
-    }
+   public function redeem(Request $request, Product $product) {
 
-    /**
-     * Store a newly created resource in storage.
-     */
-    public function store(Request $request)
-    {
-        //
-    }
+    // dd('stok produk:' .$product->stock, 'jumlah dimintaa: '. $request->input('quantity',1));
+    // dd($product->stock);
+     $user = Auth::user();
+     $quantity = $request->input('quantity',1);
 
-    /**
-     * Display the specified resource.
-     */
-    public function show(string $id)
-    {
-        //
-    }
+     $request->validate([
+        'quantity' => 'required|numeric|min:1',
 
-    /**
-     * Show the form for editing the specified resource.
-     */
-    public function edit(string $id)
-    {
-        //
-    }
+     ],[
+        'quantity.required' => 'Kamu harus mengisi jumlah produk untuk ditukar',
+        'quantity.numeric' => 'Jumlah yang disi harus angka',
+        'quantity.min' => 'Kamu harus mengisi jumlah produk minimal 1',
+     ]);
 
-    /**
-     * Update the specified resource in storage.
-     */
-    public function update(Request $request, string $id)
-    {
-        //
-    }
 
-    /**
-     * Remove the specified resource from storage.
-     */
-    public function destroy(string $id)
-    {
-        //
-    }
+     if($user->point < ($product->product_point * $quantity)) {
+        return redirect()->back()->with('error', 'Poin kamu tidak cukup untuk menukar produk ini');
+     }
+
+
+     if($product->stock < $quantity) {
+         return redirect()->back()->with('error', 'Maaf, stok produk tidak mencukupi');
+     }
+
+     DB::transaction(function () use ($user,$product,$quantity){
+         
+         $product->stock -= $quantity;
+         $product->save();
+
+         Transaction::create([
+            'users_id' => $user->id,
+            'product_id' => $product->id,
+            'quantity' => $quantity,
+            'type' => 'Barang',
+            'description' => 'Penukaran '. $product->name_product . ' dengan jumlah '. $quantity,
+            'points' => 0,
+            'status' => 'Pending',
+         ]);
+     });
+     
+     return redirect()->route('products')->with('success', 'Kamu berhasil menukar produk! Silahkan Datang kemitra terdekat');
+   }
 }
