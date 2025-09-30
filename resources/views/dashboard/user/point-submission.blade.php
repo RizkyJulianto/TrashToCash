@@ -172,7 +172,7 @@
                     </span>
 
 
-                    <div class="mt-7">
+                    <div class="mt-7  w-[30%]">
                         {{ $recentSubmission->appends(request()->query())->links() }}
                     </div>
                 </nav>

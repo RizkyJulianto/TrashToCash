@@ -60,6 +60,7 @@ Route::middleware(['auth', 'role:User'])->group(function () {
     Route::get('/dashboard/user/point-submission/bank', [CashController::class, 'showBankForm'])->name('form.bank-reedem');
     Route::post('/dashboard/user/point-submission/bank', [CashController::class, 'store'])->name('add.bank-redeem');
     Route::get('/dashboard/user/point-submission/ewallet', [CashController::class, 'showEwalletForm'])->name('form.ewallet-reedem');
+    Route::post('/dashboard/user/point-submission/ewallet', [CashController::class, 'storeWallet'])->name('add.wallet-redeem');
 
     Route::get('/dashboard/user/history', [HistoryController::class, 'index'])->name('history');
 });
