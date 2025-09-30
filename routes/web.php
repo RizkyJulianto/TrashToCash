@@ -15,7 +15,7 @@ use App\Http\Controllers\TrashController;
 use App\Http\Controllers\UserController;
 use Illuminate\Support\Facades\Route;
 
-Route::view('/', 'welcome');
+Route::view('/', 'landingpage');
 
 Route::view('profile', 'profile')
     ->middleware(['auth'])
