@@ -46,7 +46,8 @@ class ProductSubmissionController extends Controller
      }
 
      DB::transaction(function () use ($user,$product,$quantity){
-         
+         $user->point -= $product->product_point * $quantity;
+         $user->save();
          $product->stock -= $quantity;
          $product->save();
 
@@ -56,11 +57,13 @@ class ProductSubmissionController extends Controller
             'quantity' => $quantity,
             'type' => 'Barang',
             'description' => 'Penukaran '. $product->name_product . ' dengan jumlah '. $quantity,
-            'points' => 0,
+            'points' => $product->product_point * $quantity,
             'status' => 'Pending',
          ]);
      });
      
-     return redirect()->route('products')->with('success', 'Kamu berhasil menukar produk! Silahkan Datang kemitra terdekat');
+     return redirect()->route('point-submission')->with('success', 'Kamu berhasil menukar produk! Silahkan Datang kemitra terdekat');
    }
+
+   
 }

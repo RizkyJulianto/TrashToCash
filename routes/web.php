@@ -53,8 +53,13 @@ Route::middleware(['auth', 'role:User'])->group(function () {
     Route::get('/dashboard/user/tps', [ShowTpsController::class, 'show'])->name('list.tps');
     Route::get('/dashboard/user/point-submission', [PointController::class, 'index'])->name('point-submission');
     Route::get('/dashboard/user/point-submission/products', [ProductSubmissionController::class, 'index'])->name('products');
+    Route::get('/dashboard/user/point-submission/products/details/{id}', [PointController::class, 'show'])->name('detail.product-submission');
+    Route::get('/dashboard/user/point-submission/cash/details/{id}', [PointController::class, 'show'])->name('detail.cash-submission');
     Route::post('/dashboard/user/point-submission/products/{product}', [ProductSubmissionController::class, 'redeem'])->name('redeem.products');
-    Route::get('/dashboard/user/point-submission/cash', [CashController::class, 'index'])->name('cash');
+    Route::get('/dashboard/user/point-submission/redeem-options', [CashController::class, 'index'])->name('redeem.options');
+    Route::get('/dashboard/user/point-submission/bank', [CashController::class, 'showBankForm'])->name('form.bank-reedem');
+    Route::post('/dashboard/user/point-submission/bank', [CashController::class, 'store'])->name('add.bank-redeem');
+    Route::get('/dashboard/user/point-submission/ewallet', [CashController::class, 'showEwalletForm'])->name('form.ewallet-reedem');
 
     Route::get('/dashboard/user/history', [HistoryController::class, 'index'])->name('history');
 });
