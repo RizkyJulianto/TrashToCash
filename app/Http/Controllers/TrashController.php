@@ -6,6 +6,7 @@ use App\Models\Tps;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Response;
 use Illuminate\Support\Facades\Storage;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Validation\Rule;
@@ -46,14 +47,11 @@ class TrashController extends Controller
             'tps_id' => 'required|numeric',
             'trash' => ['required', 'string', Rule::in(['Plastik', 'Kaca', 'Kaleng', 'Kardus', 'Botol'])],
             'weight' => 'required|numeric',
-            'description' => 'required|string|max:255',
             'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ], [
             'tps_id.required' => 'Kamu harus memilih TPS',
             'trash.required' => 'Kamu harus memilih jenis sampah',
             'weight.required' => 'Kamu harus mengisi berat sampah',
-            'description.required' => 'Kamu harus mengisi deskripsi',
-            'description.max' => 'Deskripsi yang diisi melebih batas karakter',
             'photo.mimes' => 'Format untuk foto harus jpg, jpeg, png',
             'photo.image' => 'Kamu bukan memasukan foto',
             'photo.max' => 'Foto yang kamu masukan ukurannya terlalu besar',
@@ -65,13 +63,16 @@ class TrashController extends Controller
 
         $upload_path = $request->file('photo')->store('trash_photos', 'public');
 
+        $tps = Tps::findorFail($request->tps_id);
+        $description = 'Pengajuan Sampah ' . $request->trash . 'Ke TPS ' . $tps->name_tps;
+
         $transaction = Transaction::create([
             'users_id' => $user->id,
             'tps_id' => $request->tps_id,
             'type' => 'Sampah',
             'trash' => $request->trash,
             'weight' => $request->weight,
-            'description' => $request->description,
+            'description' => $description,
             'photo' => $upload_path,
             'points' => 0,
             'status' => 'Pending'
@@ -110,10 +111,10 @@ class TrashController extends Controller
 
         $transaction = Transaction::findOrfail($id);
 
-
-
         if ($transaction->status === 'Pending') {
+            Storage::disk('public')->delete($transaction->qrcode);
             $transaction->status = 'Dibatalkan';
+            $transaction->qrcode = null;
             $transaction->save();
             return redirect()->route('trash-submission')->with('success', 'Pengajuan Sampah berhasil dibatalkan');
         } else {
@@ -148,14 +149,11 @@ class TrashController extends Controller
             'tps_id' => 'required|numeric',
             'trash' => ['required', 'string', Rule::in(['Plastik', 'Kaca', 'Kaleng', 'Kardus', 'Botol'])],
             'weight' => 'required|numeric',
-            'description' => 'required|string|max:255',
             'photo' => 'nullable|image|mimes:jpg,jpeg,png|max:2048',
         ], [
             'tps_id.required' => 'Kamu harus memilih TPS',
             'trash.required' => 'Kamu harus memilih jenis sampah',
             'weight.required' => 'Kamu harus mengisi berat sampah',
-            'description.required' => 'Kamu harus mengisi deskripsi',
-            'description.max' => 'Deskripsi yang diisi melebih batas karakter',
             'photo.mimes' => 'Format untuk foto harus jpg, jpeg, png',
             'photo.image' => 'Kamu bukan memasukan foto',
             'photo.max' => 'Foto yang kamu masukan ukurannya terlalu besar',
@@ -175,12 +173,15 @@ class TrashController extends Controller
             $photo_path = $request->file('photo')->store('trash_photos', 'public');
         }
 
+        $tps = Tps::findorFail($request->tps_id);
+        $description = 'Pengajuan Sampah ' . $request->trash . 'Ke TPS' . $tps->name_tps;
+
         $transaction->update([
             'tps_id' => $request->tps_id,
             'type' => 'Sampah',
             'trash' => $request->trash,
             'weight' => $request->weight,
-            'description' => $request->description,
+            'description' => $description,
             'photo' => $photo_path,
         ]);
 
@@ -188,18 +189,20 @@ class TrashController extends Controller
         return redirect()->route('trash-submission', $transaction->id)->with('success', 'Pengajuan sampah berhasil diperbarui.');
     }
 
-    public function downloadQrCode(Transaction $transaction)
+    public function downloadQrCode(string $id)
     {
-        // Pastikan QR code ada dan file fisik ada di storage
-        if ($transaction->qrcode && Storage::disk('public')->exists($transaction->qrcode)) {
-            $filePath = $transaction->qrcode;
-            $fileName = 'qrcode-' . $transaction->id . '.svg';
 
-            // Menggunakan facade Storage untuk mengunduh file
-            return Storage::download($filePath, $fileName);
+        $transaction = Transaction::findOrFail($id);
+
+        $filePath = storage_path('app/public/' . $transaction->qrcode);
+
+
+        if (file_exists($filePath)) {
+            $fileName = 'qrcode-' . $transaction->id . '.svg';
+            return Response::download($filePath, $fileName);
         }
 
-        return redirect()->back()->with('error', 'QR Code tidak ditemukan atau file tidak ada.');
+        return redirect()->back()->with('error', 'QR Code tidak ditemukan.');
     }
 
     /**

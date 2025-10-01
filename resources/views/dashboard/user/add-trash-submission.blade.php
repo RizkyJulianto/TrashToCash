@@ -48,14 +48,7 @@
                         <x-input-error :messages="$errors->get('weight')" class="mt-2" />
                     </div>
 
-                    <div class="sm:col-span-2">
-                        <label for="description"
-                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
-                        <textarea id="description" rows="8" name="description"
-                            class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Your description here" value="{{ old('description') }}"></textarea>
-                        <x-input-error :messages="$errors->get('description')" class="mt-2" />
-                    </div>
+                   
                     <div class="sm:col-span-2">
                         <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gambar Sampah</span>
                         <label for="photo"

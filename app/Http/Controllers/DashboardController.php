@@ -50,7 +50,7 @@ class DashboardController extends Controller
                 $query->where('tps_id', $user->id);
             })->orderBy('created_at','desc')->paginate(5);
             
-            $totalWeight = Transaction::where('users_id', $user->id)->sum('weight');
+            $totalWeight = Transaction::where('users_id', $user->id)->where('type', 'Sampah')->sum('weight');
 
             return view('dashboard.user.user', compact('user', 'recentSubmission', 'totalWeight'));
         }   
