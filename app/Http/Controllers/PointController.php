@@ -14,7 +14,7 @@ class PointController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $recentSubmission = Transaction::whereIn('type', ['Barang', 'Tunai'])->orderBy('created_at', 'desc')->paginate(5);
+        $recentSubmission = Transaction::whereIn('type',['Barang','Tunai'])->orderBy('created_at', 'desc')->paginate(5);
         return view('dashboard.user.point-submission', compact('recentSubmission'));
     }
 
@@ -39,12 +39,12 @@ class PointController extends Controller
      */
     public function show(string $id)
     {
-        $transaction = Transaction::findOrfail($id);
-        if ($transaction->type === 'Barang') {
-            return view('dashboard.user.detail-product-submission', compact('transaction'));
-        } else if ($transaction->type === 'Tunai') {
-            return view('dashboard.user.detail-cash-submission', compact('transaction'));
-        }
+         $transaction = Transaction::findOrfail($id);
+      if($transaction->type === 'Barang') {
+         return view('dashboard.user.detail-product-submission', compact('transaction'));
+      }  else if($transaction->type === 'Tunai') {
+         return view('dashboard.user.detail-cash-submission', compact('transaction'));
+      }
     }
 
     /**
