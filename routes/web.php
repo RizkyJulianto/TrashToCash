@@ -56,6 +56,7 @@ Route::middleware(['auth', 'role:User'])->group(function () {
     Route::get('/dashboard/user/point-submission/products/details/{id}', [PointController::class, 'show'])->name('detail.product-submission');
     Route::get('/dashboard/user/point-submission/cash/details/{id}', [PointController::class, 'show'])->name('detail.cash-submission');
     Route::post('/dashboard/user/point-submission/products/{product}', [ProductSubmissionController::class, 'redeem'])->name('redeem.products');
+    Route::post('/dashboard/user/point-submission/products/cancel/{id}', [ProductSubmissionController::class, 'cancelPointSubmission'])->name('cancel.redeem.products');
     Route::get('/dashboard/user/point-submission/redeem-options', [CashController::class, 'index'])->name('redeem.options');
     Route::get('/dashboard/user/point-submission/bank', [CashController::class, 'showBankForm'])->name('form.bank-reedem');
     Route::post('/dashboard/user/point-submission/bank', [CashController::class, 'store'])->name('add.bank-redeem');

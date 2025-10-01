@@ -35,7 +35,7 @@ class DashboardController extends Controller
             })->orderBy('created_at','desc')->get();
            
 
-            return view('dashboard.mitra.mitra', compact('user', 'transaction', 'totalProduct','recentSubmission'));
+            return view('dashboard.mitra.mitra', compact('user',  'totalProduct','recentSubmission'));
             
         } else {
           $query = Transaction::where('users_id', $user->id);

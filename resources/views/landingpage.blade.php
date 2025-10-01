@@ -23,7 +23,7 @@
             id="navigation-container">
             <div class="flex justify-between items-center">
                 <div class="logo">
-                    <h1 class="text-black/80 text-[28px] md:text-4xl lg:text-[28px] font-fredoka font-medium"
+                    <h1 class="text-color-cloudwhite text-[28px] md:text-4xl lg:text-[28px] font-fredoka font-medium"
                         id="logo">
                         Trashto<span class="text-color-primary">Cash</span>
                     </h1>

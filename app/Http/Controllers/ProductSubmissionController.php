@@ -65,5 +65,38 @@ class ProductSubmissionController extends Controller
      return redirect()->route('point-submission')->with('success', 'Kamu berhasil menukar produk! Silahkan Datang kemitra terdekat');
    }
 
+    public function cancelPointSubmission(string $id)
+    {
+
+     
+        $transaction = Transaction::findOrFail($id);
+        
+        
+        if ($transaction->status === 'Pending') {
+            
+            
+            $user = $transaction->Users;
+            $product = $transaction->Products;
+
+            
+            $user->point += $transaction->points;
+            $user->save();
+            
+            
+            $product->stock += $transaction->quantity;
+            $product->save();
+
+            
+            $transaction->status = 'Dibatalkan';
+            $transaction->save();
+            
+        } else {
+             return redirect()->back()->with('error', 'Pengajuan penukaran poin tidak bisa dibatalkan.');
+        }
+    
+    
+    return redirect()->route('point-submission')->with('success', 'Pengajuan penukaran poin berhasil dibatalkan.');
+    }
+
    
 }

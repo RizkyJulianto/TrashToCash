@@ -75,13 +75,13 @@
                                 </div>
 
                                 <div class="col flex justify-between w-full border-b border-gray-400">
-                                    <dl class="flex flex-col  justify-between gap-y-1  pb-2 dark:border-gray-700 ">
+                                    <dl class="flex flex-col  justify-between gap-y-1  pb-2 dark:border-gray-700 w-[290px]">
                                         <dd class="text-base font-medium text-gray-900 dark:text-white">Deskripsi</dd>
-                                        <dt class="text-base font-normal text-gray-500 dark:text-gray-400">
-                                            {{ $transaction->description }}</dt>
+                                        <dt class="text-base font-normal text-gray-500 dark:text-gray-400 text-justify">
+                                            {{ $transaction->description }} </dt>
                                     </dl>
 
-                                    <dl class="flex flex-col  justify-between gap-y-1  pb-2 dark:border-gray-700 w-[150px]">
+                                    <dl class="flex flex-col  justify-between gap-y-1  pb-2 dark:border-gray-700 w-[150px] h-[60px]">
                                         <dd class="text-base font-medium text-gray-900 dark:text-white">Total Penukaran
                                         </dd>
                                         <dt class="text-base font-normal text-gray-500 dark:text-gray-400"> Rp.

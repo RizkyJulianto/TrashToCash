@@ -12,67 +12,87 @@
                     <img src="{{ asset('storage/' . $product->photo) }}" alt="Photo" class="h-80">
                 </div>
 
-                <div class="right-col flex justify-between mt-3 w-full">
-                    <div class="space-y-5">
-                        <dl class="flex flex-col sm:flex-row gap-8 items-center">
-                            <dt class="min-w-40">
-                                <span class="block text-[18px] text-gray-500 dark:text-neutral-500">Nama Produk:</span>
-                            </dt>
-                            <dd>
-                                {{ $product->name_product }}
-                            </dd>
-                        </dl>
+              <div class="right-col basis-[40%] ">
+                    <div class="grow">
+                        <div
+                            class=" rounded-lg border border-gray-100 bg-gray-50 p-6 dark:border-gray-700 dark:bg-gray-800 shadow-lg">
+                            <div class="space-y-2 w-[600px]">
 
-                        <dl class="flex flex-col sm:flex-row gap-8 items-center">
-                            <dt class="min-w-40">
-                                <span class="block text-[18px] text-gray-500 dark:text-neutral-500">Deskripsi:</span>
-                            </dt>
-                            <dd>
-                                {{ $product->description }}
-                            </dd>
-                        </dl>
+                                <dl class="flex items-center justify-between gap-4  pb-2 dark:border-gray-700">
+                                    <dt class="text-2xl font-medium text-gray-900 dark:text-white">Detail Data</dt>
+                                </dl>
 
-                        <dl class="flex flex-col sm:flex-row gap-8 items-center">
-                            <dt class="min-w-40">
-                                <span class="block text-[18px] text-gray-500 dark:text-neutral-500">Stok:</span>
-                            </dt>
-                            <dd>
-                                {{ $product->stock }}
-                            </dd>
-                        </dl>
+                                <div class="col flex justify-between w-full border-b border-gray-400">
+                                    <dl class="flex flex-col  justify-between gap-y-1 pb-2 dark:border-gray-700">
+                                        <dd class="text-base font-medium text-gray-900 dark:text-white">Nama Produk
+                                        </dd>
+                                        <dt class="text-base font-normal text-gray-500 dark:text-gray-400">
+                                            {{ $product->name_product }}</dt>
+                                    </dl>
 
-                        <dl class="flex flex-col sm:flex-row gap-8 items-center">
-                            <dt class="min-w-40">
-                                <span class="block text-[18px] text-gray-500 dark:text-neutral-500">Poin Didapat:</span>
-                            </dt>
-                            <dd>
-                                {{ $product->product_point }}
-                            </dd>
-                        </dl>
+                                    <dl class="flex flex-col  justify-between gap-y-1  pb-2 dark:border-gray-700 w-[150px]">
+                                        <dd class="text-base font-medium text-gray-900 dark:text-white ">Poin Dibutuhkan
+                                        </dd>
+                                        <dt class="text-base font-normal text-gray-500 dark:text-gray-400">
+                                            {{ $product->product_point }}</dt>
+                                    </dl>
 
-                        <dl class="flex flex-col sm:flex-row gap-8 items-center">
-                            <dt class="min-w-40">
-                                <span class="block text-[18px] text-gray-500 dark:text-neutral-500">Tanggal
-                                    Masuk:</span>
-                            </dt>
-                            <dd>
-                                {{ $product->created_at->format('D, d M Y') }}
-                            </dd>
-                        </dl>
 
-                        <form id="delete-form-{{ $product->id }}" action="{{ route('delete-product', $product->id) }}"
-                            method="POST" onsubmit="confirmDelete(event,this);">
-                            @csrf
-                            @method('DELETE')
-                            <x-danger-button>
-                                Hapus Produk
-                            </x-danger-button>
-                        </form>
+                                </div>
+
+                                
+
+                                <div class="col flex justify-between w-full border-b border-gray-400">
+                                    <dl class="flex flex-col  justify-between gap-y-1  pb-2 dark:border-gray-700 w-[280px] text-justify">
+                                        <dd class="text-base font-medium text-gray-900 dark:text-white">Deskripsi Produk</dd>
+                                        <dt class="text-base font-normal text-gray-500 dark:text-gray-400">
+                                            {{ $product->description }} </dt>
+                                    </dl>
+
+                                    <dl class="flex flex-col  justify-between gap-y-1  pb-2 dark:border-gray-700 w-[150px] h-[60px]">
+                                        <dd class="text-base font-medium text-gray-900 dark:text-white">Stok Produk
+                                        </dd>
+                                        <dt class="text-base font-normal text-gray-500 dark:text-gray-400"> 
+                                            {{ $product->stock }} </dt>
+                                    </dl>
+
+
+                                </div>
 
 
 
+
+                                <dl class="flex flex-col  justify-between gap-y-1  pb-2 dark:border-gray-700  w-[150px]">
+                                    <dd class="text-base font-medium text-gray-900 dark:text-white">Tanggal Penukaran
+                                    </dd>
+                                    <dt class="text-base font-normal text-gray-500 dark:text-gray-400">
+                                        {{ $product->created_at->format('D, d M Y') }}</dt>
+                                </dl>
+
+                                <dl class="flex flex-col sm:flex-row gap-8 mt-8  items-center">
+                                    
+                                        <form id="delete-form-{{ $product->id }}"
+                                            action="{{ route('delete-product', $product->id) }}"
+                                            method="post" onsubmit="confirmDelete(event,this);">
+                                            @csrf
+                                            @method('DELETE')
+                                            <x-danger-button>
+                                                Hapus Produk
+                                            </x-danger-button>
+                                        </form>
+                                  
+
+                                </dl>
+
+
+
+
+
+                            </div>
+
+
+                        </div>
                     </div>
-
                 </div>
 
 
