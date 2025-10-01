@@ -81,7 +81,10 @@ Route::middleware(['auth', 'role:Mitra'])->group(function () {
     Route::put('/dashboard/mitra/edit/products/{id}', [ProductController::class, 'update'])->name('edit-product');
     Route::delete('/dashboard/mitra/delete/products/{id}', [ProductController::class, 'destroy'])->name('delete-product');
     Route::get('/dashboard/mitra/products/details/{id}', [ProductController::class, 'show'])->name('detail.product');
-    Route::get('/dashboard/mitra/products/submissions', [ProductVerificationController::class, 'index'])->name('list.product-submissions');
+    Route::get('/dashboard/mitra/products/submissions', [ProductVerificationController::class, 'index'])->name('list.product-verifications');
+    Route::get('/dashboard/mitra/products/submissions/details/{id}', [ProductVerificationController::class, 'show'])->name('detail.product-verifications');
+    Route::post('/dashboard/mitra/products/submissions/details/{id}/accept', [ProductVerificationController::class, 'verify'])->name('accept.product-verifications');
+    Route::post('/dashboard/mitra/products/submissions/details/{id}/reject', [ProductVerificationController::class, 'reject'])->name('reject.product-verifications');
 });
 
 Route::middleware(['auth', 'role:Admin'])->group(function () {

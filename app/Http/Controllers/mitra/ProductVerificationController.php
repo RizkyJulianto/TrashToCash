@@ -7,6 +7,7 @@ use App\Models\Product;
 use App\Models\Transaction;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class ProductVerificationController extends Controller
 {
@@ -63,7 +64,38 @@ class ProductVerificationController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $transaction = Transaction::findOrFail($id);
+        return view('dashboard.mitra.detail-verifications', compact('transaction'));
+    }
+    
+    public function verify(Request $request, string $id) {
+        $transaction =Transaction::findOrFail($id);
+        if($transaction->status !== 'Pending') {
+             return redirect()->back()->with('error', 'Pengajuan tidak dapat diverifikasi.');
+        }
+
+        DB::transaction(function () use ($transaction) {
+            
+            $transaction->status = 'Sukses';
+            $transaction->save();
+        });
+
+        return redirect()->route('list.product-verifications')->with('success', 'Pengajuan berhasil diverifikasi.');
+    }
+
+    public function reject(Request $request, string $id) {
+        $transaction =Transaction::findOrFail($id);
+        if($transaction->status !== 'Pending') {
+             return redirect()->back()->with('error', 'Pengajuan tidak dapat ditolak.');
+        }
+
+        DB::transaction(function () use ($transaction) {
+            
+            $transaction->status = 'Gagal';
+            $transaction->save();
+        });
+
+        return redirect()->route('list.product-verifications')->with('success', 'Pengajuan berhasil ditolak.');
     }
 
     /**

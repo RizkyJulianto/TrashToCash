@@ -163,7 +163,7 @@
                         <span class="font-semibold text-gray-900 dark:text-white">20</span>
                     </span>
                     <x-secondary-button>
-                        <a href="{{ route('list.product-submissions') }}">Lihat Semua Pengajuan</a>
+                        <a href="{{ route('list.product-verifications') }}">Lihat Semua Pengajuan</a>
                     </x-secondary-button>
                 </nav>
             </div>

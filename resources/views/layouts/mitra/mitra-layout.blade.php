@@ -103,6 +103,25 @@
                 }
             });
         }
+
+        function confirmReject(event, form) {
+            event.preventDefault();
+
+            Swal.fire({
+                title: "Apakah Kamu Yakin?",
+                text: "Akan menolak pengajuan ini!",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#c4c4c4",
+                confirmButtonText: "Ya, Tolak!",
+                cancelButtonText: 'Tidak'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
     </script>
 </body>
 
