@@ -31,11 +31,7 @@
     <section class=" dark:bg-gray-900 p-3 sm:p-5 antialiased">
         <div class="mx-auto max-w-screen-2xl px-1 lg:px-4">
             <div class="bg-white dark:bg-gray-800 relative shadow-md rounded-md overflow-hidden">
-                <div
-                    class="flex flex-col md:flex-row md:items-center md:justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
-                   
-
-                </div>
+               
                 <div
                     class="flex flex-col md:flex-row items-stretch md:items-center md:space-x-3 space-y-3 md:space-y-0 justify-between mx-4 py-4 border-t dark:border-gray-700">
                     <div class="w-full md:w-1/2">

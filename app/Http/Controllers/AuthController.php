@@ -134,7 +134,7 @@ class AuthController extends Controller
             'email' => $request->input('email'),
             'password' => $request->input('password'),
             'address' => $request->input('address'),
-            'partnerr' => $request->input('partnerr'),
+            'partner' => $request->input('partner'),
             'role' => 'Mitra',
         ]);
         

@@ -1,5 +1,8 @@
 <?php
 
+use App\Http\Controllers\admin\MitraController;
+use App\Http\Controllers\admin\TpsController;
+use App\Http\Controllers\admin\UsersController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\CashController;
 use App\Http\Controllers\CashSubmissionController;
@@ -89,7 +92,17 @@ Route::middleware(['auth', 'role:Mitra'])->group(function () {
 
 Route::middleware(['auth', 'role:Admin'])->group(function () {
 
-    Route::get('/dashboard/admin', function () {
-        return view('dashboard.admin.admin');
-    })->name('admin.dashboard');
+   Route::get('/dashboard/admin', [DashboardController::class, 'index'])->name('admin.dashboard');
+   Route::get('/dashboard/admin/data-users', [UsersController::class, 'index'])->name('data-users');
+   Route::get('/dashboard/admin/data-mitra', [MitraController::class, 'index'])->name('data-mitra');
+   Route::get('/dashboard/admin/data-tps', [TpsController::class, 'index'])->name('data-tps');
+   Route::get('/dashboard/admin/data-tps/details/{id}', [TpsController::class, 'show'])->name('detail.data-tps');
+   Route::get('/dashboard/admin/add/data-tps', [TpsController::class, 'create'])->name('form-add.data-tps');
+   Route::post('/dashboard/admin/add/data-tps', [TpsController::class, 'store'])->name('add.data-tps');
+   Route::get('/dashboard/admin/edit/data-tps/{id}', [TpsController::class, 'edit'])->name('form-edit.data-tps');
+   Route::put('/dashboard/admin/edit/data-tps/{id}', [TpsController::class, 'update'])->name('edit.data-tps');
+   Route::delete('/dashboard/admin/delete/data-tps/{id}', [TpsController::class, 'destroy'])->name('delete.data-tps');
+   Route::get('/dashboard/admin/data-mitra/{id}', [MitraController::class, 'show'])->name('detail.data-mitra');
+   Route::delete('/dashboard/admin/data-users/{id}', [UsersController::class, 'destroy'])->name('delete.data-users');
+   Route::delete('/dashboard/admin/data-mitra/delete-account/{id}', [MitraController::class, 'destroy'])->name('delete.data-mitra');
 });

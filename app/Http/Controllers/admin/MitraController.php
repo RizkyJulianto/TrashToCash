@@ -1,17 +1,21 @@
 <?php
 
-namespace App\Http\Controllers;
+namespace App\Http\Controllers\admin;
 
+use App\Http\Controllers\Controller;
+use App\Models\User;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
-class AdminController extends Controller
+class MitraController extends Controller
 {
     /**
      * Display a listing of the resource.
      */
     public function index()
     {
-        //
+        $user = User::where('role', 'Mitra')->orderBy('created_at', 'desc')->paginate(5);
+        return view('dashboard.admin.data-mitra', compact('user'));
     }
 
     /**
@@ -35,7 +39,8 @@ class AdminController extends Controller
      */
     public function show(string $id)
     {
-        //
+        $mitra = User::findOrFail($id);
+        return view('dashboard.admin.detail-mitra', compact('mitra'));
     }
 
     /**
@@ -59,6 +64,13 @@ class AdminController extends Controller
      */
     public function destroy(string $id)
     {
-        //
+        $user = User::findOrFail($id);
+        if (Auth::id() === $user->id) {
+            return redirect()->back()->with('error', 'Anda tidak bisa menghapus data ini.');
+        }
+
+        $user->delete();
+
+        return redirect()->route('data-mitra')->with('success', 'Mitra berhasil dihapus.');
     }
 }

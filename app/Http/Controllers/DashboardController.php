@@ -17,7 +17,14 @@ class DashboardController extends Controller
     {
         $user = Auth::user();
         if ($user->role === 'Admin') {
-            return view('dashboard.admin.admin');
+            $totalUsers = User::where('role','User')->count();
+            $submissions = Transaction::with(['Users','Tps'])
+            ->whereIn('type', ['Sampah','Tunai'])->orderBy('created_at','desc')->paginate(5);
+
+            $trashSubmissions = Transaction::where('type','Sampah')->count();
+            $cashSubmissions = Transaction::where('type','Tunai')->count();
+
+            return view('dashboard.admin.admin', compact('user','totalUsers', 'submissions', 'trashSubmissions', 'cashSubmissions'));
         } else if ($user->role === 'Mitra') {
             $query = Transaction::where('users_id', $user->id);
             if ($request->filled('search')) {
@@ -26,7 +33,6 @@ class DashboardController extends Controller
                       ->orWhere('description', 'like', '%' . $search . '%');
             }
 
-            
         
             
             $totalProduct = Product::where('mitra_id', $user->id)->count('id');

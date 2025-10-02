@@ -21,7 +21,7 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
-<body class="antialiased ">
+<body class="antialiased overflow-x-hidden">
     <header class="header relative py-7 px-6" id="Home">
         <nav class="navbar transition-all duration-500 py-7 px-6 md:px-12 md:left-10 lg:left-8 w-[90%] lg:w-[95%] bg-gray-300/20 rounded-full bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20 border border-gray-100 fixed z-20"
             id="navigation-container">
@@ -81,7 +81,7 @@
     <!-- Home Section -->
     <section class="home h-screen scroll-mt-28">
         <img src="{{ asset('images/bg-image.png') }}" alt=""
-            class="absolute top-0 w-full -z-20 h-screen object-cover" />
+            class="absolute top-0 w-full border-red-300 -z-20 h-screen object-cover" />
 
         <div class="background-overlay bg-black w-full h-screen object-cover absolute top-0 opacity-25 -z-10"></div>
 
@@ -244,7 +244,7 @@
                 <p class="font-fredoka font-thin opacity-80 text-xl md:text-2xl lg:text-xl leading-6">
                     Temukan manfaat bergabung dengan komunitas pengelolaan limbah
                     berkelanjutan kami
-                </p>
+                </p>    
             </div>
         </div>
         <div class="service-content mt-12 flex flex-col lg:flex-row gap-x-7 gap-y-5" data-aos="fade-right" data-aos-duration="1200">

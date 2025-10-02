@@ -90,7 +90,7 @@
                                         class="mt-0.5 w-full rounded border-gray-300 shadow-sm sm:text-sm">
                                         <option value="">Silahkan Pilih</option>
                                         <option value="Toko Sembako">Toko Sembako</option>
-                                        <option value="Toko Peralatan">Toko Peralatan</option>
+                                        <option value="Toko Perabotan">Toko Perabotan</option>
                                         <option value="Toko Ritel">Toko Ritel</option>
                                     </select>
                                     <x-input-error :messages="$errors->get('partner')" class="mt-2" />

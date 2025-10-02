@@ -12,21 +12,33 @@
 
                 <!-- Navigation Links -->
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('mitra.dashboard')" :active="request()->routeIs('mitra.dashboard')" wire:navigate>
+                    <x-nav-link :href="route('admin.dashboard')" :active="request()->routeIs('admin.dashboard')" wire:navigate>
                         Dashboard
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('list.product')" :active="request()->routeIs('list.product')" wire:navigate>
-                        Produk Saya
+                    <x-nav-link :href="route('data-users')" :active="request()->routeIs('data-users')" wire:navigate>
+                        Pengguna
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('data-mitra')" :active="request()->routeIs('data-mitra')" wire:navigate>
+                        Mitra
+                    </x-nav-link>
+                </div>
+                <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
+                    <x-nav-link :href="route('data-tps')" :active="request()->routeIs('data-tps')" wire:navigate>
+                        TPS
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
                     <x-nav-link :href="route('list.product-verifications')" :active="request()->routeIs('list.product-verifications')" wire:navigate>
-                        Pengajuan Produk
+                        Pengajuan
                     </x-nav-link>
                 </div>
 
+               
+ 
             </div>
 
             <!-- Settings Dropdown -->
