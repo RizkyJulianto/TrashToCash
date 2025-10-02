@@ -64,7 +64,7 @@ class AuthController extends Controller
             'name' => 'required|string|max:255',
             'email' => 'required|string|max:255|email|unique:users,email',
             'password' => 'required|string|min:8',
-            'password_confirmation' => 'required|string|min:8|same:password',
+            'password_confirmation' => 'required|string|same:password',
         ], [
             'name.required' => 'Kamu harus mengisi nama',
             'name.max' => 'Nama anda melebihi batas jumlah karakter',
@@ -85,6 +85,7 @@ class AuthController extends Controller
             'name' => $request->input('name'),
             'email' => $request->input('email'),
             'password' => Hash::make($request->input('password')),
+            'point' => 0,
             'role' => 'User',
         ]);
 
@@ -106,7 +107,7 @@ class AuthController extends Controller
         $validator = Validator::make($request->all(), [
             'name' => 'required|string|max:255',
             'email' => 'required|string|max:255|unique:users,email',
-            'password' => 'required|string|min:8|confirmed',
+            'password' => 'required|string|min:8',
             'password_confirmation' => 'required|string|min:8|same:password',
             'address' => 'required|string|max:255',
             'partner' => ['required', 'string', Rule::in(['Toko Sembako', 'Toko Peralatan', 'Toko Ritel'])],

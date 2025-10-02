@@ -122,6 +122,25 @@
                 }
             });
         }
+
+        function confirmLogout(event, form) {
+            event.preventDefault();
+
+            Swal.fire({
+                title: "Apakah Kamu Yakin?",
+                text: "Akan logout",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#d33",
+                cancelButtonColor: "#c4c4c4",
+                confirmButtonText: "Ya, logout!",
+                cancelButtonText: 'Tidak'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
     </script>
 </body>
 
