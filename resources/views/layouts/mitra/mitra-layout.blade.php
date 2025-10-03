@@ -42,6 +42,42 @@
 
     <script src="{{ asset('library/sweetalert/sweetalert2.min.js') }}"></script>
 
+    {{-- Image Preview --}}
+     <script>
+        document.addEventListener("DOMContentLoaded", function() {
+            const fileInput = document.getElementById("photo-input");
+            const imagePreview = document.getElementById("image-preview");
+            const uploadPlaceholder = document.getElementById("upload-placeholder");
+
+            const existingImage = document.getElementById("existing-image");
+
+            fileInput.addEventListener("change", function(event) {
+                const file = event.target.files[0];
+                if (file) {
+                    const reader = new FileReader();
+                    reader.onload = function(e) {
+                        imagePreview.src = e.target.result;
+                        imagePreview.classList.remove("hidden");
+                        uploadPlaceholder.classList.add("hidden");
+
+                        if (existingImage) {
+                            existingImage.classList.add("hidden");
+                        }
+                    };
+                    reader.readAsDataURL(file);
+                } else {
+                    imagePreview.src = "#";
+                    imagePreview.classList.add("hidden");
+                    uploadPlaceholder.classList.remove("hidden");
+
+                    if (existingImage) {
+                        existingImage.classList.remove("hidden");
+                    }
+                }
+            });
+        });
+    </script>
+
     @if (session('success'))
         <script>
             Swal.fire({

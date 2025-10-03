@@ -19,26 +19,28 @@
                             Nama Produk</label>
                         <input type="text" name="name_product" id="name_product"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Masukan nama produk" value="{{ old('name_product',$product->name_product) }}">
+                            placeholder="Masukan nama produk" value="{{ old('name_product', $product->name_product) }}">
                         <x-input-error :messages="$errors->get('name_product')" class="mt-2" />
 
                     </div>
-                  
+
                     <div class="w-full">
                         <label for="stock" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Stok
                         </label>
                         <input type="number" name="stock" id="stock"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Masukan stok produk" value="{{ old('stock',$product->stock) }}">
+                            placeholder="Masukan stok produk" value="{{ old('stock', $product->stock) }}">
                         <x-input-error :messages="$errors->get('stock')" class="mt-2" />
                     </div>
 
                     <div class="w-full">
-                        <label for="product_point" class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Poin
+                        <label for="product_point"
+                            class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Poin
                         </label>
                         <input type="number" name="product_point" id="product_point"
                             class="bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-primary-600 focus:border-primary-600 block w-full p-2.5 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Masukan poin produk" value="{{ old('product_point',$product->product_point) }}">
+                            placeholder="Masukan poin produk"
+                            value="{{ old('product_point', $product->product_point) }}">
                         <x-input-error :messages="$errors->get('product_point')" class="mt-2" />
                     </div>
 
@@ -47,19 +49,32 @@
                             class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Description</label>
                         <textarea id="description" rows="8" name="description"
                             class="block p-2.5 w-full text-sm text-gray-900 bg-gray-50 rounded-lg border border-gray-300 focus:ring-primary-500 focus:border-primary-500 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500"
-                            placeholder="Masukan deskripsi produk">{{ old('description',$product->description) }}
+                            placeholder="Masukan deskripsi produk">{{ old('description', $product->description) }}
                         </textarea>
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
                     </div>
                     <div class="sm:col-span-2">
-                        <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gambar Produk</span>
-                        <label for="photo"
+                        <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gambar Sampah</span>
+
+                        <label for="photo-input"
                             class="flex flex-col justify-center items-center w-full h-40 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                             <img src="{{ asset('storage/' . $product->photo) }}" alt="Foto Product" class="h-32 w-auto mb-2">
-                            <input id="photo" type="file" class="hidden" name="photo">
+
+                            @if ($product->photo)
+                                <img id="existing-image" src="{{ asset('storage/' . $product->photo) }}"
+                                    alt="Gambar lama" class="h-36 w-auto object-cover rounded-lg">
+                            @else
+                                <div id="existing-image-placeholder" class="text-gray-500">Tidak ada gambar</div>
+                            @endif
+
+                            <img id="image-preview" src="#" alt="Pratinjau Gambar Baru"
+                                class="hidden h-36 w-auto object-cover rounded-lg">
+
+                            <div id="upload-placeholder" class="hidden flex-col justify-center items-center pt-5 pb-6">
+                            </div>
+
+                            <input id="photo-input" type="file" name="photo" class="hidden">
                         </label>
                         <x-input-error :messages="$errors->get('photo')" class="mt-2" />
-
                     </div>
                 </div>
                 <button type="submit"
