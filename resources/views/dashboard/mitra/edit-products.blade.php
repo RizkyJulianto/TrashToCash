@@ -54,7 +54,7 @@
                         <x-input-error :messages="$errors->get('description')" class="mt-2" />
                     </div>
                     <div class="sm:col-span-2">
-                        <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gambar Sampah</span>
+                        <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gambar Produk</span>
 
                         <label for="photo-input"
                             class="flex flex-col justify-center items-center w-full h-40 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
