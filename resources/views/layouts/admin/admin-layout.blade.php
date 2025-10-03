@@ -21,6 +21,8 @@
 
     <link rel="stylesheet" href="{{ asset('library/sweetalert/sweetalert2.min.css') }}">
 
+    {{-- HTML5 QRCODE --}}
+    <script src="https://unpkg.com/html5-qrcode@2.3.8/html5-qrcode.min.js"></script>
 </head>
 
 <body class="font-fredoka antialiased">
@@ -41,6 +43,44 @@
     </div>
 
     <script src="{{ asset('library/sweetalert/sweetalert2.min.js') }}"></script>
+
+    {{-- <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const html5QrCode = new Html5Qrcode("reader");
+
+            const qrCodeSuccessCallback = (decodedText, decodedResult) => {
+                // Hentikan scanner setelah berhasil memindai
+                html5QrCode.stop().then(() => {
+                    // Kirim data QR code ke backend
+                    fetch('{{ route('admin.verifikasi.scan') }}', {
+                        method: 'POST',
+                        headers: {
+                            'Content-Type': 'application/json',
+                            'X-CSRF-TOKEN': document.querySelector('meta[name="csrf-token"]').getAttribute('content')
+                        },
+                        body: JSON.stringify({ qrcode: decodedText })
+                    })
+                    .then(response => response.json())
+                    .then(data => {
+                        if (data.status === 'success') {
+                            // Tampilkan data transaksi yang diterima
+                            // Anda perlu membuat fungsi untuk menampilkan data ini
+                            displayTransactionDetails(data.transaction);
+                        } else {
+                            // Tampilkan error jika transaksi tidak ditemukan
+                            Swal.fire('Error!', data.message, 'error');
+                        }
+                    })
+                    .catch(error => {
+                        Swal.fire('Error!', 'Gagal memproses QR code.', 'error');
+                    });
+                });
+            };
+
+            const config = { fps: 10, qrbox: { width: 250, height: 250 } };
+            html5QrCode.start({ facingMode: "environment" }, config, qrCodeSuccessCallback);
+        });
+    </script> --}}
 
     @if (session('success'))
         <script>
@@ -134,6 +174,25 @@
                 confirmButtonColor: "#d33",
                 cancelButtonColor: "#c4c4c4",
                 confirmButtonText: "Ya, logout!",
+                cancelButtonText: 'Tidak'
+            }).then((result) => {
+                if (result.isConfirmed) {
+                    form.submit();
+                }
+            });
+        }
+
+        function confirmVerifications(event, form) {
+            event.preventDefault();
+
+            Swal.fire({
+                title: "Apakah Kamu Yakin?",
+                text: "Akan verifikasi pengajuan ini !",
+                icon: "warning",
+                showCancelButton: true,
+                confirmButtonColor: "#06923E",
+                cancelButtonColor: "#c4c4c4",
+                confirmButtonText: "Ya, verifikasi!",
                 cancelButtonText: 'Tidak'
             }).then((result) => {
                 if (result.isConfirmed) {

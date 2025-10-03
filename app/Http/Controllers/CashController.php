@@ -54,20 +54,15 @@ class CashController extends Controller
         $rules = [
             'totals' => ['required', 'numeric', Rule::in($validAmounts)],
             'type_bank' => 'required',
-            'type_wallet' => 'required',
             'bank_number' => 'required|numeric',
-            'phone_number' => 'required|numeric',
         ];
 
         $validator = Validator::make($request->all(), $rules, [
             'totals.required' => 'Jumlah penukaran harus diisi.',
             'totals.in' => 'Jumlah tidak sesuai dengan panduan.',
             'type_bank.required' => 'Nama bank harus dipilih.',
-            'type_wallet.required' => 'Nama ewallet harus dipilih.',
             'bank_number.required' => 'Nomor rekening harus diisi.',
-            'phone_number.required' => 'Nomor telepon harus diisi.',
             'bank_number.numeric' => 'Nomor rekening harus angka.',
-            'phone_number.numeric' => 'Nomor telepon harus angka.',
         ]);
 
         if ($validator->fails()) {

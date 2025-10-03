@@ -71,7 +71,11 @@
                                         Penukaran {{ $data->type }}</th>
                                     <td class="px-4 py-3">{{ $data->description }}</td>
                                     <td class="px-4 py-3">{{ $data->created_at->format('D, d M Y') }}</td>
-                                    @if ($data->points !== 0)
+                                    @if ($data->points !== 0 && $data->status === 'Sukses')
+                                        <td class="px-4 py-3 text-green-500">
+                                            + {{ $data->points }}
+                                        </td>
+                                    @elseif ($data->points !== 0 && $data->type === 'Tunai' && $data->status !== 'Sukses')
                                         <td class="px-4 py-3 text-red-500">
                                             - {{ $data->points }}
                                         </td>

@@ -1,25 +1,24 @@
-<x-user-app-layout>
+<x-admin-app-layout>
     <x-slot name="header">
         <h2 class="font-600 text-xl text-gray-800 dark:text-gray-200 leading-tight">
-            Detail Pengajuan Sampah
+            Detail Verifikasi Sampah
         </h2>
     </x-slot>
 
-    <section class="py-8  md:py-16 dark:bg-gray-900 antialiased">
+       <section class="py-8  md:py-16 dark:bg-gray-900 antialiased">
         <div class="max-w-screen-xl px-4 mx-auto 2xl:px-0">
-            <div class="flex gap-x-10 max-w-full mx-auto px-4">
-                <div class=" left-col max-w-md lg:max-w-sm  h-64  rounded-md ">
-                    <img src="{{ asset('storage/' . $transaction->photo) }}" alt="Gambar Sampah" class="w-[300px] shadow-lg">
-                    <div class="img-caption">
-                        <p class="italic mt-2 text-center text-gray-500">Gambar Sampah</p>
-                    </div>
+            <div class="flex gap-x-10 max-w-[90%] mx-auto">
+                <div class=" left-col max-w-md lg:max-w-sm  h-80 border-2 rounded-md border-color-primary">
+                    <img src="{{ asset('storage/' . $transaction->photo) }}" alt="Photo">
                 </div>
+
+               
 
                 <div class="right-col basis-[40%] ">
                     <div class="grow">
                         <div
                             class=" rounded-lg border border-gray-100 bg-gray-50 p-6 dark:border-gray-700 dark:bg-gray-800 shadow-lg">
-                            <div class="space-y-2 w-[500px]">
+                            <div class="space-y-2 w-[600px]">
 
                                 <dl class="flex items-center justify-between gap-4  pb-2 dark:border-gray-700">
                                     <dt class="text-2xl font-medium text-gray-900 dark:text-white">Detail Data</dt>
@@ -126,50 +125,46 @@
                                 </div>
 
 
-                                <dl class="flex flex-col sm:flex-row gap-8 items-center">
+                              <dl class="flex flex-col sm:flex-row gap-8  items-center">
                                     @if ($transaction->status === 'Pending')
-                                        <form id="cancel-form-{{ $transaction->id }}"
-                                            action="{{ route('cancel.trash-submission', $transaction->id) }}"
-                                            method="post" onsubmit="confirmCancel(event,this);">
-                                            @csrf
-                                            <x-danger-button class="mt-4">
-                                                Batalkan Pengajuan
-                                            </x-danger-button>
-                                        </form>
+                                        <div class="row flex gap-x-2">
+                                            <form id="confirm-verifications-form-{{ $transaction->id }}"
+                                                action="{{ route('accept.trash-verifications', $transaction->id) }}"
+                                                method="post" onsubmit="confirmVerifications(event,this);">
+                                                @csrf
+                                                <x-primary-button class="mt-4">
+                                                    Verifikasi Pengajuan
+                                                </x-primary-button>
+                                            </form>
+
+                                            <form id="confirm-reject-form-{{ $transaction->id }}"
+                                                action="{{ route('reject.trash-verifications', $transaction->id) }}"
+                                                method="post" onsubmit="confirmReject(event,this);">
+                                                @csrf
+                                                <x-danger-button class="mt-4">
+                                                    Tolak Pengajuan
+                                                </x-danger-button>
+                                            </form>
+                                        </div>
                                     @else
-                                        <span class="text-gray-400 ">*Pengajuan hanya bisa dibatalkan pada saat
+                                        <span class="text-gray-400 ">*Verifikasi Pengajuan hanya bisa pada saat
                                             status masih
                                             pending !</span>
                                     @endif
 
                                 </dl>
-
-
-
-
-
                             </div>
 
 
                         </div>
                     </div>
                 </div>
-                <div>
-                    @if ($transaction->qrcode)
-                        <h3 class="text-lg  mb-2">QR Code untuk Verifikasi</h3>
-                        <img src="{{ asset('storage/qrcodes/' . $transaction->qrcode. '.svg') }}" alt="QR Code"
-                            class="w-48 h-48 border rounded-lg p-2">
-                    @else
-                        <p class="text-gray-600">QR Code tidak tersedia.</p>
-                    @endif
-                    <x-secondary-button class="mt-4">
-                        <a href="{{ route('download.qrcode', $transaction->id) }}">Download QR Code</a>
-                    </x-secondary-button>
-                </div>
 
 
             </div>
+
+        </div>
         </div>
     </section>
 
-</x-user-app-layout>
+</x-admin-app-layout>

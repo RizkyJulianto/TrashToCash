@@ -87,8 +87,8 @@ class TrashController extends Controller
         $qrcodeData = $transaction->id;
         $qrcodePath = 'qrcodes/' . $qrcodeData . '.svg';
         QrCode::size(200)->generate($qrcodeData, public_path('storage/' . $qrcodePath));
-
-        $transaction->qrcode = $qrcodePath;
+        
+        $transaction->qrcode = $transaction->id;
         $transaction->save();
 
         return redirect()->route('trash-submission', $transaction->id)->with('success', 'Pengajuan sampah berhasil! Silakan pindai QR code Anda di TPS.');

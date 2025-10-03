@@ -32,7 +32,7 @@
                     </x-nav-link>
                 </div>
                 <div class="hidden space-x-8 sm:-my-px sm:ms-10 sm:flex">
-                    <x-nav-link :href="route('list.product-verifications')" :active="request()->routeIs('list.product-verifications')" wire:navigate>
+                    <x-nav-link :href="route('data-verifications')" :active="request()->routeIs('data-verifications')" wire:navigate>
                         Pengajuan
                     </x-nav-link>
                 </div>
