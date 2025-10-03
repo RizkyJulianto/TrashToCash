@@ -21,9 +21,9 @@
     <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 </head>
 
-<body class="antialiased overflow-x-hidden">
-    <header class="header relative py-7 px-6" id="Home">
-        <nav class="navbar transition-all duration-500 py-7 px-6 md:px-12 md:left-10 lg:left-8 w-[90%] lg:w-[95%] bg-gray-300/20 rounded-full bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20 border border-gray-100 fixed z-20"
+<body class="antialiased w-screen overflow-x-hidden">
+    <header class="header relative py-7 px-6 overflow-x-hidden" id="Home">
+        <nav class="navbar transition-all duration-500 py-7 px-6 md:px-12 md:left-10 lg:left-8 w-[87%] md:w-[88%] lg:w-[95%] bg-gray-300/20 rounded-full bg-clip-padding backdrop-filter backdrop-blur-xl bg-opacity-20 border border-gray-100 fixed z-20"
             id="navigation-container">
             <div class="flex justify-between items-center">
                 <div class="logo">
@@ -79,22 +79,22 @@
     <!-- Header End -->
 
     <!-- Home Section -->
-    <section class="home h-screen scroll-mt-28">
+    <section class="home h-screen scroll-mt-28 ">
         <img src="{{ asset('images/bg-image.png') }}" alt=""
             class="absolute top-0 w-full border-red-300 -z-20 h-screen object-cover" />
 
         <div class="background-overlay bg-black w-full h-screen object-cover absolute top-0 opacity-25 -z-10"></div>
 
-        <div class="home-textbox mt-40 lg:mt-32 px-10 flex flex-col gap-y-5 md:max-w-[700px]" data-aos="fade-right" data-aos-duration="1000">
+        <div class="home-textbox mt-28 lg:mt-32 px-10 flex flex-col gap-y-5 md:max-w-[700px]" data-aos="fade-right" data-aos-duration="1000">
             <div class="textbox-title">
                 <h2
-                    class="text-white/90 font-bold font-roboto text-4xl md:text-6xl leading-10 md:leading-16 lg:text-5xl">
+                    class="text-white/90 font-bold font-roboto text-[26px] md:text-5xl leading-8 md:leading-16 lg:text-5xl">
                     Ubah Sampah Jadi Peluang, Bantu Lingkungan Sekaligus Dapatkan <span
                         class="text-yellow-400">Reward!</span>
                 </h2>
             </div>
             <div class="textbox-description">
-                <p class="font-fredoka text-white/80 font-light text-justify text-xl md:text-2xl lg:text-base">
+                <p class="font-fredoka text-white/80 font-light text-justify text-base md:text-2xl lg:text-base">
                     Bergabunglah dengan TrashtoCash ubah
                     barang daur ulang Anda menjadi uang sungguhan sambil memberikan
                     dampak positif bagi lingkungan. Bersama-sama, kita sedang membangun
@@ -154,18 +154,18 @@
     <!-- Home Section End -->
 
     <!-- About Section -->
-    <section class="about py-12 w-full flex flex-col items-center scroll-mt-28" id="About">
+    <section class="about  lg:py-12 w-full flex flex-col items-center scroll-mt-28" id="About">
         <div class="section-title text-center flex flex-col gap-y-3 items-center" data-aos="fade-down" data-aos-duration="1000">
             <h2 class="font-roboto text-4xl md:text-5xl lg:text-4xl font-medium opacity-80">
                 Tentang Kami
             </h2>
             <div class="underline bg-color-primary w-28 h-[1px]"></div>
         </div>
-        <div class="about-content flex flex-col items-center px-6 gap-y-10 gap-x-12 mt-20 lg:flex-row">
+        <div class="about-content flex flex-col items-center px-6 gap-y-10 gap-x-12 mt-20 lg:flex-row overflow-x-hidden">
             <div class="about-left-col max-md:px-4" data-aos="fade-right" data-aos-duration="1200">
-                <img src="{{ asset('images/tentang-image.png') }}" alt="" class="lg:w-[450px] md:w-[670px]" />
+                <img src="{{ asset('images/tentang-image.png') }}" alt="" class="lg:w-[450px] md:w-[600px]" />
             </div>
-            <div class="about-right-col max-w-[400px] md:max-w-[630px] lg:max-w-[600px] max-md:px-4" data-aos="fade-left" data-aos-duration="1000">
+            <div class="about-right-col max-w-[400px] md:max-w-[600px] lg:max-w-[600px] max-md:px-4" data-aos="fade-left" data-aos-duration="1000">
                 <div class="title">
                     <h2
                         class="font-roboto font-medium opacity-80 text-[22px] md:text-[40px] lg:text-[34px] md:leading-12 lg:leading-10">
@@ -236,12 +236,12 @@
     <!-- Service Section -->
     <section class="service py-20 px-7 lg:px-10 w-full scroll-mt-28" id="Service">
         <div class="section-title text-center flex flex-col gap-y-3 items-center" data-aos="fade-down" data-aos-duration="1000">
-            <h2 class="font-roboto text-3xl md:text-4xl font-medium opacity-80">
+            <h2 class="font-roboto text-2xl md:text-4xl font-medium opacity-80">
                 Mengapa Memilih TrashtoCash ?
             </h2>
             <div class="underline bg-color-primary w-28 h-[1px]"></div>
             <div class="subtitle max-w-[320px] md:max-w-[600px] lg:max-w-[500px]">
-                <p class="font-fredoka font-thin opacity-80 text-xl md:text-2xl lg:text-xl leading-6">
+                <p class="font-fredoka font-thin opacity-80 text-[18px] md:text-2xl lg:text-xl leading-6">
                     Temukan manfaat bergabung dengan komunitas pengelolaan limbah
                     berkelanjutan kami
                 </p>    
@@ -258,12 +258,12 @@
                     </svg>
                 </div>
                 <div class="title-card mt-3">
-                    <h3 class="font-roboto opacity-80 font-medium text-[26px] lg:text-2xl">
+                    <h3 class="font-roboto opacity-80 font-medium text-xl md:text-[26px] lg:text-2xl">
                         Dapatkan Uang
                     </h3>
                 </div>
                 <div class="description-card mt-2">
-                    <p class="font-fredoka opacity-80 font-light text-xl lg:text-base lg:max-w-[400px] text-justify">
+                    <p class="font-fredoka opacity-80 font-light text-base lg:text-base lg:max-w-[400px] text-justify">
                         Ubah limbah daur ulang Anda menjadi hadiah uang tunai. Sistem
                         penetapan harga yang transparan kami memastikan Anda mendapatkan
                         kompensasi yang adil atas upaya lingkungan Anda.
@@ -280,12 +280,12 @@
                     </svg>
                 </div>
                 <div class="title-card mt-3">
-                    <h3 class="font-roboto opacity-80 font-medium text-[26px] lg:text-2xl">
+                    <h3 class="font-roboto opacity-80 font-medium text-xl md:text-[26px] lg:text-2xl">
                         Melindungi Lingkungan
                     </h3>
                 </div>
                 <div class="description-card mt-2">
-                    <p class="font-fredoka opacity-80 font-light text-xl lg:text-base lg:max-w-[400px] text-justify">
+                    <p class="font-fredoka opacity-80 font-light text-base lg:text-base lg:max-w-[400px] text-justify">
                         Setiap barang yang Anda daur ulang membantu mengurangi limbah di
                         tempat pembuangan akhir dan emisi a. Jadilah bagian dari solusi
                         perubahan iklim di komunitas Anda.
@@ -302,12 +302,12 @@
                     </svg>
                 </div>
                 <div class="title-card mt-3">
-                    <h3 class="font-roboto opacity-80 font-medium text-[26px] lg:text-2xl">
+                    <h3 class="font-roboto opacity-80 font-medium text-xl md:text-[26px] lg:text-2xl">
                         Bangun Komunitas
                     </h3>
                 </div>
                 <div class="description-card mt-2">
-                    <p class="font-fredoka opacity-80 font-light text-xl lg:text-base lg:max-w-[400px] text-justify">
+                    <p class="font-fredoka opacity-80 font-light text-base lg:text-base lg:max-w-[400px] text-justify">
                         Bergabunglah dengan tetangga yang memiliki minat serupa dan peduli
                         terhadap keberlanjutan. Bersama-sama, kita menciptakan perubahan
                         positif yang berkelanjutan di wilayah lokal kita.
@@ -325,12 +325,12 @@
                 class="absolute -z-10 w-full left-0 h-full top-0" />
         </div>
         <div class="section-title text-center flex flex-col gap-y-3 items-center" data-aos="fade-down" data-aos-duration="1000">
-            <h2 class="font-roboto text-3xl md:text-4xl font-medium text-color-cloudwhite">
+            <h2 class="font-roboto text-2xl md:text-4xl font-medium text-color-cloudwhite">
                 Cara Kerja TrashtoCash ?
             </h2>
             <div class="underline bg-white w-28 h-[1px]"></div>
             <div class="subtitle max-w-[320px] md:max-w-[550px] lg:max-w-[450px]">
-                <p class="font-fredoka font-thin text-color-cloudwhite text-xl md:text-2xl lg:text-xl leading-6">
+                <p class="font-fredoka font-thin text-color-cloudwhite text-[18px] md:text-2xl lg:text-xl leading-6">
                     Langkah-langkah sederhana untuk mulai menghasilkan uang sambil
                     membantu lingkungan.
                 </p>
@@ -353,13 +353,13 @@
                 </div>
                 <div class="text flex flex-col gap-y-1 max-md:items-center lg:items-center">
                     <div class="list-title mt-5 md:mt-3">
-                        <h3 class="text-color-cloudwhite text-2xl md:text-[28px] lg:text-xl font-medium">
+                        <h3 class="text-color-cloudwhite text-xl md:text-[28px] lg:text-xl font-medium">
                             Daftar
                         </h3>
                     </div>
                     <div class="list-description mt-3">
                         <p
-                            class="text-color-cloudwhite font-fredoka font-thin text-xl md:text-2xl lg:text-base text-center md:text-justify lg:text-center">
+                            class="text-color-cloudwhite font-fredoka font-thin text-[18px] md:text-2xl lg:text-base text-center md:text-justify lg:text-center">
                             Buat akun TrashtoCash gratis Anda dan siapkan dompet digital Anda
                             untuk mulai menghasilkan.
                         </p>
@@ -378,13 +378,13 @@
                 </div>
                 <div class="text flex flex-col gap-y-1 max-md:items-center lg:items-center">
                     <div class="list-title mt-5 md:mt-3">
-                        <h3 class="text-color-cloudwhite text-2xl md:text-[28px] lg:text-xl font-medium">
+                        <h3 class="text-color-cloudwhite text-xl md:text-[28px] lg:text-xl font-medium">
                             Kumpulkan Sampah
                         </h3>
                     </div>
                     <div class="list-description mt-3">
                         <p
-                            class="text-color-cloudwhite font-fredoka font-thin text-xl md:text-2xl lg:text-base text-center md:text-justify lg:text-center">
+                            class="text-color-cloudwhite font-fredoka font-thin text-[18px] md:text-2xl lg:text-base text-center md:text-justify lg:text-center">
                             Kumpulkan bahan daur ulang seperti botol plastik, kertas, dan
                             kaleng logam dari rumah Anda.
                         </p>
@@ -403,13 +403,13 @@
                 </div>
                 <div class="text flex flex-col gap-y-1 max-md:items-center lg:items-center">
                     <div class="list-title mt-5 md:mt-3">
-                        <h3 class="text-color-cloudwhite text-2xl md:text-[28px] lg:text-xl font-medium">
+                        <h3 class="text-color-cloudwhite text-xl md:text-[28px] lg:text-xl font-medium">
                             Serahkan Sampah
                         </h3>
                     </div>
                     <div class="list-description mt-3">
                         <p
-                            class="text-color-cloudwhite font-fredoka font-thin text-xl md:text-2xl lg:text-base text-center md:text-justify lg:text-center">
+                            class="text-color-cloudwhite font-fredoka font-thin text-[18px] md:text-2xl lg:text-base text-center md:text-justify lg:text-center">
                             Bawa sampah yang sudah dipisahkan ke pusat daur ulang terdekat.
                         </p>
                     </div>
@@ -427,13 +427,13 @@
                 </div>
                 <div class="text flex flex-col gap-y-1 max-md:items-center lg:items-center">
                     <div class="list-title mt-5 md:mt-3">
-                        <h3 class="text-color-cloudwhite text-2xl md:text-[28px] lg:text-xl font-medium">
+                        <h3 class="text-color-cloudwhite text-xl md:text-[28px] lg:text-xl font-medium">
                             Dapatkan Bayaran
                         </h3>
                     </div>
                     <div class="list-description mt-3">
                         <p
-                            class="text-color-cloudwhite font-fredoka font-thin text-xl md:text-2xl lg:text-base text-center md:text-justify lg:text-center">
+                            class="text-color-cloudwhite font-fredoka font-thin text-[18px] md:text-2xl lg:text-base text-center md:text-justify lg:text-center">
                             Dapatkan pembayaran instan ke dompet digital Anda berdasarkan
                             berat dan jenis bahan.
                         </p>
@@ -447,12 +447,12 @@
     <!-- Testimoni Section -->
     <section class="testimoni flex flex-col items-center w-full py-20 scroll-mt-28" id="Review" >
         <div class="section-title text-center flex flex-col gap-y-3 items-center" data-aos="fade-down" data-aos-duration="1000">
-            <h2 class="font-roboto text-3xl md:text-4xl font-medium opacity-80">
+            <h2 class="font-roboto text-2xl md:text-4xl font-medium opacity-80">
                 Apa Kata Mereka ?
             </h2>
             <div class="underline bg-color-primary w-28 h-[1px]"></div>
             <div class="subtitle max-w-[320px] md:max-w-[550px] lg:max-w-[450px]">
-                <p class="font-fredoka font-thin text-xl md:text-2xl lg:text-xl leading-6 opacity-80">
+                <p class="font-fredoka font-thin text-[19px] md:text-2xl lg:text-xl leading-6 opacity-80">
                     Lihat perubahan positif yang kita buat bersama di lingkungan dan
                     komunitas kita
                 </p>
@@ -469,7 +469,7 @@
                     </div>
                     <div class="identity">
                         <div class="name">
-                            <p class="text-[22px] md:text-2xl lg:text-xl opacity-80">
+                            <p class="text-xl md:text-2xl lg:text-xl opacity-80">
                                 Rio Saputra
                             </p>
                         </div>
@@ -496,7 +496,7 @@
                     </div>
                     <div class="identity">
                         <div class="name">
-                            <p class="text-[22px] md:text-2xl lg:text-xl opacity-80">
+                            <p class="text-xl md:text-2xl lg:text-xl opacity-80">
                                 Sarah Putri
                             </p>
                         </div>
@@ -522,7 +522,7 @@
                     </div>
                     <div class="identity">
                         <div class="name">
-                            <p class="text-[22px] md:text-2xl lg:text-xl opacity-80">
+                            <p class="text-xl md:text-2xl lg:text-xl opacity-80">
                                 Cahyono
                             </p>
                         </div>
@@ -546,12 +546,12 @@
     <!-- fAQ Section -->
     <section class="faq flex flex-col px-10 py-20 w-full scroll-mt-28" id="FAQ">
         <div class="section-title text-center flex flex-col gap-y-3 items-center" data-aos="fade-down" data-aos-duration="1000">
-            <h2 class="font-roboto text-3xl md:text-4xl font-medium opacity-80">
+            <h2 class="font-roboto text-2xl md:text-4xl font-medium opacity-80">
                 Pertanyaan Populer
             </h2>
             <div class="underline bg-color-primary w-28 h-[1px]"></div>
             <div class="subtitle max-w-[320px] md:max-w-[550px] lg:max-w-[450px]">
-                <p class="font-fredoka font-thin text-xl md:text-2xl lg:text-xl leading-6 opacity-80">
+                <p class="font-fredoka font-thin text-[18px] md:text-2xl lg:text-xl leading-6 opacity-80">
                     Semua yang perlu Anda ketahui tentang TrashtoCash dan cara kerjanya
                 </p>
             </div>
@@ -561,7 +561,7 @@
             <div
                 class="accordion list bg-white border border-gray shadow-md rounded-xl p-5 font-fredoka md:w-[670px] lg:w-[730px]">
                 <div class="header flex justify-between items-center cursor-pointer">
-                    <span class="md:text-xl lg:text-[18px]">Apa Itu Bank Sampah ?</span>
+                    <span class="text-sm md:text-xl lg:text-[18px]">Apa Itu Bank Sampah ?</span>
                     <div class="icon list-toggle transform transition-transform duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z" />
@@ -582,7 +582,7 @@
             <div
                 class="accordion list bg-white border border-gray shadow-md rounded-xl p-5 font-fredoka md:w-[670px] lg:w-[730px]">
                 <div class="header flex justify-between items-center cursor-pointer">
-                    <span class="md:text-xl lg:text-[18px]">Bagaimana Cara Kerja Bank <br class="md:hidden" />
+                    <span class="text-sm md:text-xl lg:text-[18px]">Bagaimana Cara Kerja Bank <br class="md:hidden" />
                         Sampah?</span>
                     <div class="icon list-toggle transform transition-transform duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -615,7 +615,7 @@
             <div
                 class="accordion list bg-white border border-gray shadow-md rounded-xl p-5 font-fredoka md:w-[670px] lg:w-[730px]">
                 <div class="header flex justify-between items-center cursor-pointer">
-                    <span class="md:text-xl lg:text-[18px]">Jenis Sampah Apa Saja yang Bisa Ditukar?</span>
+                    <span class="text-sm md:text-xl lg:text-[18px]">Jenis Sampah Apa Saja yang Bisa Ditukar?</span>
                     <div class="icon list-toggle transform transition-transform duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
                             <path fill="currentColor" d="M19 13h-6v6h-2v-6H5v-2h6V5h2v6h6z" />
@@ -635,7 +635,7 @@
             <div
                 class="accordion list bg-white border border-gray shadow-md rounded-xl p-5 font-fredoka md:w-[670px] lg:w-[730px]">
                 <div class="header flex justify-between items-center cursor-pointer">
-                    <span class="md:text-xl lg:text-[18px]">Bagaimana Cara Menghitung Nilai Uangnya?
+                    <span class="text-sm md:text-xl lg:text-[18px]">Bagaimana Cara Menghitung Nilai Uangnya?
                     </span>
                     <div class="icon list-toggle transform transition-transform duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -656,7 +656,7 @@
             <div
                 class="accordion list bg-white border border-gray shadow-md rounded-xl p-5 font-fredoka md:w-[670px] lg:w-[730px]">
                 <div class="header flex justify-between items-center cursor-pointer">
-                    <span class="md:text-xl lg:text-[18px]">Apakah Harus Daftar untuk Menggunakan Layanan?
+                    <span class="text-sm md:text-xl lg:text-[18px]">Apakah Harus Daftar untuk Menggunakan Layanan?
                     </span>
                     <div class="icon list-toggle transform transition-transform duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -677,7 +677,7 @@
             <div
                 class="accordion list bg-white border border-gray shadow-md rounded-xl p-5 font-fredoka md:w-[670px] lg:w-[730px]">
                 <div class="header flex justify-between items-center cursor-pointer">
-                    <span class="md:text-xl lg:text-[18px]">Di mana Lokasi Bank Sampah?
+                    <span class="text-sm md:text-xl lg:text-[18px]">Di mana Lokasi Bank Sampah?
                     </span>
                     <div class="icon list-toggle transform transition-transform duration-300">
                         <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24">
@@ -710,7 +710,7 @@
                     </h2>
                 </div>
                 <div class="description mt-5 max-w-[92%] lg:max-w-[80%]">
-                    <p class="text-white/80 font-thin text-justify text-xl lg:text-base">
+                    <p class="text-white/80 font-thin text-justify text-[18px] md:text-xl lg:text-base">
                         Membangun komunitas yang berkelanjutan melalui pengelolaan limbah
                         inovatif dan pengelolaan lingkungan yang bertanggung jawab.
                     </p>
@@ -775,7 +775,7 @@
                     </ul>
                 </div>
             </div>
-            <div class="support font-fredoka basis-[31%] lg:basis-[20%] ">
+            <div class="support font-fredoka basis-[28%] lg:basis-[20%] ">
                 <div class="title">
                     <h3 class="text-color-cloudwhite text-xl font-medium">Dukungan</h3>
                 </div>
