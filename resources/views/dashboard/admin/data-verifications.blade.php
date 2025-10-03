@@ -92,9 +92,14 @@
                                         <span
                                             class="bg-primary-100 text-primary-800 text-base  px-2 py-0.5 rounded dark:bg-primary-900 dark:text-primary-300">{{ Str::limit($data->description, 30) }}</span>
                                     </td>
-                                    @if ($data->points !== 0)
+                                    @if ($data->points !== 0 && $data->status === 'Sukses')
                                         <td class="px-4 py-3 text-green-500">
                                             + {{ $data->points }}
+                                        </td>
+
+                                    @elseif ($data->points !== 0 && $data->status === 'Pending')
+                                         <td class="px-4 py-3 text-red-500">
+                                            - {{ $data->points }}
                                         </td>
                                     @else
                                         <td class="px-4 py-3">
