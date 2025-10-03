@@ -20,9 +20,7 @@ class TrashController extends Controller
     public function index()
     {
         $user = Auth::user();
-        $recentSubmission = Transaction::with(['Users', 'Tps'])->where('type', 'Sampah')->whereHas('Tps', function ($query) use ($user) {
-            $query->where('tps_id', $user->id);
-        })->orderBy('created_at', 'desc')->paginate(5);
+        $recentSubmission = Transaction::with(['Users', 'Tps'])->where('type', 'Sampah')->orderBy('created_at', 'desc')->paginate(5);
         $tpsList = Tps::all();
         return view('dashboard.user.trash-submission', compact('recentSubmission', 'tpsList'));
     }

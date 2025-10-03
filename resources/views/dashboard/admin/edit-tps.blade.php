@@ -12,7 +12,7 @@
             <h2 class="mb-4 text-xl font-medium text-gray-900 dark:text-white">Ubah Data</h2>
             <form action="{{ route('edit.data-tps', $tps->id) }}" method="POST" enctype="multipart/form-data">
                 @csrf
-                @method('PUT')
+                @method('PUT') 
                 <div class="grid gap-4 sm:grid-cols-2 sm:gap-6">
                     
                     <div class="sm:col-span-2">
