@@ -52,17 +52,34 @@
                         <x-input-error :messages="$errors->get('weight')" class="mt-2" />
                     </div>
 
-                   
+
                     <div class="sm:col-span-2">
                         <span class="block mb-2 text-sm font-medium text-gray-900 dark:text-white">Gambar Sampah</span>
-                        <label for="photo"
+
+                        <label for="photo-input"
                             class="flex flex-col justify-center items-center w-full h-40 bg-gray-50 rounded-lg border-2 border-gray-300 border-dashed cursor-pointer dark:hover:bg-bray-800 dark:bg-gray-700 hover:bg-gray-100 dark:border-gray-600 dark:hover:border-gray-500 dark:hover:bg-gray-600">
-                            <img src="{{ asset('storage/' . $transaction->photo) }}" alt="Foto Sampah" class="h-32 w-auto mb-2">
-                            <input id="photo" type="file" class="hidden" name="photo">
+
+                            @if ($transaction->photo)
+                                <img id="existing-image" src="{{ asset('storage/' . $transaction->photo) }}"
+                                    alt="Gambar lama" class="h-36 w-auto object-cover rounded-lg">
+                            @else
+                                <div id="existing-image-placeholder" class="text-gray-500">Tidak ada gambar</div>
+                            @endif
+
+                            <img id="image-preview" src="#" alt="Pratinjau Gambar Baru"
+                                class="hidden h-36 w-auto object-cover rounded-lg">
+
+                            <div id="upload-placeholder" class="hidden flex-col justify-center items-center pt-5 pb-6">
+                            </div>
+
+                            <input id="photo-input" type="file" name="photo" class="hidden">
                         </label>
                         <x-input-error :messages="$errors->get('photo')" class="mt-2" />
-
                     </div>
+
+                    
+
+
                 </div>
                 <button type="submit"
                     class="inline-flex w-full justify-center items-center px-5 py-2.5 mt-4 sm:mt-6 text-sm font-medium text-center text-white bg-blue-700 rounded-lg focus:ring-4 focus:ring-blue-200 dark:focus:ring-blue-900 hover:bg-blue-800">
