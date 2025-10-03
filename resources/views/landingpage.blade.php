@@ -175,7 +175,7 @@
                 <div class="description">
                     <p
                         class="text-justify opacity-80 font-light font-fredoka mt-4 text-xl md:text-[22px] lg:text-base">
-                        Didirikan pada tahun 2025, BankSampah lahir dari ide sederhana
+                        Didirikan pada tahun 2025, TrashtoCash lahir dari ide sederhana
                         namun kuat: memberdayakan komunitas untuk mengelola dampak
                         lingkungan mereka sambil menciptakan peluang ekonomi. Kami percaya
                         bahwa pengelolaan limbah yang berkelanjutan harus memberikan
@@ -237,7 +237,7 @@
     <section class="service py-20 px-7 lg:px-10 w-full scroll-mt-28" id="Service">
         <div class="section-title text-center flex flex-col gap-y-3 items-center" data-aos="fade-down" data-aos-duration="1000">
             <h2 class="font-roboto text-3xl md:text-4xl font-medium opacity-80">
-                Mengapa Memilih BankSampah ?
+                Mengapa Memilih TrashtoCash ?
             </h2>
             <div class="underline bg-color-primary w-28 h-[1px]"></div>
             <div class="subtitle max-w-[320px] md:max-w-[600px] lg:max-w-[500px]">
@@ -326,7 +326,7 @@
         </div>
         <div class="section-title text-center flex flex-col gap-y-3 items-center" data-aos="fade-down" data-aos-duration="1000">
             <h2 class="font-roboto text-3xl md:text-4xl font-medium text-color-cloudwhite">
-                Cara Kerja BankSampah ?
+                Cara Kerja TrashtoCash ?
             </h2>
             <div class="underline bg-white w-28 h-[1px]"></div>
             <div class="subtitle max-w-[320px] md:max-w-[550px] lg:max-w-[450px]">
@@ -360,7 +360,7 @@
                     <div class="list-description mt-3">
                         <p
                             class="text-color-cloudwhite font-fredoka font-thin text-xl md:text-2xl lg:text-base text-center md:text-justify lg:text-center">
-                            Buat akun EcoBank gratis Anda dan siapkan dompet digital Anda
+                            Buat akun TrashtoCash gratis Anda dan siapkan dompet digital Anda
                             untuk mulai menghasilkan.
                         </p>
                     </div>
@@ -480,7 +480,7 @@
                 </div>
                 <div class="card-description">
                     <p class="font-light opacity-80 mt-6 lg:mt-4 text-justify text-base md:text-xl lg:text-sm">
-                        "BankSampah telah mengubah cara pandang masyarakat di lingkungan
+                        "Trashtocash telah mengubah cara pandang masyarakat di lingkungan
                         kami terhadap limbah. Saya telah mendapatkan lebih dari 1jt tahun
                         ini sambil mengajarkan teman-teman saya tentang tanggung jawab
                         lingkungan.”
@@ -507,7 +507,7 @@
                 </div>
                 <div class="card-description">
                     <p class="font-light opacity-80 mt-6 lg:mt-4 text-justify text-base md:text-xl lg:text-sm">
-                        “Sebagai pemilik restoran, BankSampah membantu saya mengelola
+                        “Sebagai pemilik restoran, TrashtoCash membantu saya mengelola
                         limbah secara bertanggung jawab sambil mendapatkan penghasilan
                         tambahan. Layanan penjemputan limbahnya sangat praktis.”
                     </p>
@@ -552,7 +552,7 @@
             <div class="underline bg-color-primary w-28 h-[1px]"></div>
             <div class="subtitle max-w-[320px] md:max-w-[550px] lg:max-w-[450px]">
                 <p class="font-fredoka font-thin text-xl md:text-2xl lg:text-xl leading-6 opacity-80">
-                    Semua yang perlu Anda ketahui tentang BankSampah dan cara kerjanya
+                    Semua yang perlu Anda ketahui tentang TrashtoCash dan cara kerjanya
                 </p>
             </div>
         </div>
@@ -838,7 +838,7 @@
 
         <div class="underline bg-[#d9d9d9]/10 h-[1px] w-full mt-8"></div>
         <div class="copyright mt-3 text-white/70 font-light">
-            <p>&copy; 2025 BankSampah. All rights reserved.</p>
+            <p>&copy; 2025 TrashtoCash. All rights reserved.</p>
         </div>
     </footer>
     <!-- Footer End -->
