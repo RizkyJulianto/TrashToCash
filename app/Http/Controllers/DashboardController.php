@@ -18,19 +18,34 @@ class DashboardController extends Controller
         $user = Auth::user();
         if ($user->role === 'Admin') {
             $totalUsers = User::where('role', 'User')->count();
-            $submissions = Transaction::with(['Users', 'Tps'])
-                ->whereIn('type', ['Sampah', 'Tunai'])->orderBy('created_at', 'desc')->paginate(5);
+            $query = Transaction::with(['Users', 'Tps'])
+                ->whereIn('type', ['Sampah', 'Tunai']);
+
+            if ($request->filled('search')) {
+                $search = $request->input('search');
+                $query->where(function ($q) use ($search) {
+                    $q->whereHas('Users', function ($q_user) use ($search) {
+                        $q_user->where('name', 'like', '%' . $search . '%');
+                    })->orWhere('type', 'like', '%' . $search . '%');
+                });
+            }
+
+            $submissions = $query->orderBy('created_at', 'desc')->paginate(5);
+
+            if ($submissions->isEmpty() && $request->filled('search')) {
+                return redirect()->route('admin.dashboard')->with('warning', 'Tidak ada data ditemukan! Mohon periksa kembali kata kunci Anda.');
+            }
 
             $trashSubmissions = Transaction::where('type', 'Sampah')->count();
             $cashSubmissions = Transaction::where('type', 'Tunai')->count();
 
             return view('dashboard.admin.admin', compact('user', 'totalUsers', 'submissions', 'trashSubmissions', 'cashSubmissions'));
         } else if ($user->role === 'Mitra') {
-             $query = Transaction::with(['Users', 'Products'])
-                                 ->where('type', 'Barang')
-                                 ->whereHas('products', function ($q) use ($user) {
-                                     $q->where('mitra_id', $user->id);
-                                 });
+            $query = Transaction::with(['Users', 'Products'])
+                ->where('type', 'Barang')
+                ->whereHas('products', function ($q) use ($user) {
+                    $q->where('mitra_id', $user->id);
+                });
 
             if ($request->filled('search')) {
                 $search = $request->input('search');

@@ -12,10 +12,25 @@ class VerificationsController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $submissions = Transaction::with(['Users', 'Tps'])
-            ->whereIn('type',['Tunai','Sampah'])->orderBy('created_at', 'desc')->paginate(5);
+        $query = Transaction::with(['Users', 'Tps'])
+            ->whereIn('type', ['Sampah', 'Tunai']);
+
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where(function ($q) use ($search) {
+                $q->whereHas('Users', function ($q_user) use ($search) {
+                    $q_user->where('name', 'like', '%' . $search . '%');
+                })->orWhere('type', 'like', '%' . $search . '%');
+            });
+        }
+
+        $submissions = $query->orderBy('created_at', 'desc')->paginate(5);
+
+        if ($submissions->isEmpty() && $request->filled('search')) {
+            return redirect()->route('data-verifications')->with('warning', 'Tidak ada data ditemukan! Mohon periksa kembali kata kunci Anda.');
+        }
 
         return view('dashboard.admin.data-verifications', compact('submissions'));
     }
@@ -73,17 +88,17 @@ class VerificationsController extends Controller
     public function show(string $id)
     {
         $transaction = Transaction::findOrFail($id);
-        if($transaction->type === 'Sampah') {
+        if ($transaction->type === 'Sampah') {
             return view('dashboard.admin.detail-verifications-trash', compact('transaction'));
         } else {
-             return view('dashboard.admin.detail-verifications-cash', compact('transaction'));
+            return view('dashboard.admin.detail-verifications-cash', compact('transaction'));
         }
     }
 
     public function verifyTrash(Request $request, Transaction $transaction)
     {
         $trashPoints = [
-            'Plastik' => 100, 
+            'Plastik' => 100,
             'Kaca' => 50,
             'Kaleng' => 80,
             'Kardus' => 60,
@@ -96,7 +111,7 @@ class VerificationsController extends Controller
         }
 
         $pointsAwarded = $trashPoints[$transaction->trash] * $transaction->weight;
-        
+
         DB::transaction(function () use ($transaction, $pointsAwarded) {
             $user = $transaction->Users;
             $user->point += $pointsAwarded;
@@ -112,12 +127,12 @@ class VerificationsController extends Controller
 
     public function verifyCash(Request $request, Transaction $transaction)
     {
-        if($transaction->status !== 'Pending') {
-             return redirect()->back()->with('error', 'Pengajuan tidak dapat diverifikasi.');
+        if ($transaction->status !== 'Pending') {
+            return redirect()->back()->with('error', 'Pengajuan tidak dapat diverifikasi.');
         }
 
         DB::transaction(function () use ($transaction) {
-            
+
             $transaction->status = 'Sukses';
             $transaction->save();
         });
@@ -125,14 +140,15 @@ class VerificationsController extends Controller
         return redirect()->route('data-verifications')->with('success', 'Pengajuan berhasil diverifikasi.');
     }
 
-     public function reject(Request $request, string $id) {
-        $transaction =Transaction::findOrFail($id);
-        if($transaction->status !== 'Pending') {
-             return redirect()->back()->with('error', 'Pengajuan tidak dapat ditolak.');
+    public function reject(Request $request, string $id)
+    {
+        $transaction = Transaction::findOrFail($id);
+        if ($transaction->status !== 'Pending') {
+            return redirect()->back()->with('error', 'Pengajuan tidak dapat ditolak.');
         }
 
         DB::transaction(function () use ($transaction) {
-            
+
             $transaction->status = 'Gagal';
             $transaction->save();
         });
@@ -140,10 +156,11 @@ class VerificationsController extends Controller
         return redirect()->route('data-verifications')->with('success', 'Pengajuan berhasil ditolak.');
     }
 
-     public function rejectCash(Request $request, string $id) {
-        $transaction =Transaction::findOrFail($id);
-        if($transaction->status !== 'Pending') {
-             return redirect()->back()->with('error', 'Pengajuan tidak dapat ditolak.');
+    public function rejectCash(Request $request, string $id)
+    {
+        $transaction = Transaction::findOrFail($id);
+        if ($transaction->status !== 'Pending') {
+            return redirect()->back()->with('error', 'Pengajuan tidak dapat ditolak.');
         }
 
         DB::transaction(function () use ($transaction) {

@@ -82,7 +82,7 @@
             <div class="bg-white dark:bg-gray-800 relative shadow-md rounded-md overflow-hidden">
                 <div
                     class="flex flex-col md:flex-row md:items-center md:justify-between space-y-3 md:space-y-0 md:space-x-4 p-4">
-                    <form class="flex items-center w-full md:w-[60%] lg:w-[35%]">
+                    <form class="flex items-center w-full md:w-[60%] lg:w-[50%]">
                         <label for="search" class="sr-only">Search</label>
                         <div class="relative w-full">
                             <div class="absolute inset-y-0 left-0 flex items-center pl-3 pointer-events-none">
@@ -93,7 +93,7 @@
                                 </svg>
                             </div>
                             <input type="text" id="search"
-                                placeholder="Cari data berdasarkan jenis sampah dan nama tps" name="search"
+                                placeholder="Cari data berdasarkan jenis penukaran dan nama pengguna" name="search"
                                 value="{{ request('search') }}"
                                 class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
 
@@ -176,12 +176,21 @@
                 <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
                     aria-label="Table navigation">
                     <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                        Showing
-                        <span class="font-semibold text-gray-900 dark:text-white">1-5</span>
-                        of
-                        <span class="font-semibold text-gray-900 dark:text-white">20</span>
+                        Menampilkan
+                        <span
+                            class="font-semibold text-gray-900 dark:text-white">{{ $submissions->firstItem() }}</span>
+                        sampai
+                        <span
+                            class="font-semibold text-gray-900 dark:text-white">{{ $submissions->lastItem() }}</span>
+                        dari
+                        <span class="font-semibold text-gray-900 dark:text-white">{{ $submissions->total() }}</span>
+                        laporan
                     </span>
 
+                    
+                    <div class="mt-7">
+                        {{ $submissions->appends(request()->query())->links() }}
+                    </div>
                 </nav>
             </div>
         </div>

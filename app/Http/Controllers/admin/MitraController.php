@@ -12,9 +12,23 @@ class MitraController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $user = User::where('role', 'Mitra')->orderBy('created_at', 'desc')->paginate(5);
+
+        $query = User::where('role', 'Mitra')->orderBy('created_at', 'desc');
+
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where('name', 'like', '%' . $search . '%');
+        }
+
+        $user = $query->paginate(5);
+
+        if ($user->isEmpty() && $request->filled('search')) {
+            return redirect()->route('data-mitra')->with('warning', 'Tidak ada data produk ditemukan! Mohon periksa kembali kata kunci Anda.');
+        }
+
+
         return view('dashboard.admin.data-mitra', compact('user'));
     }
 
