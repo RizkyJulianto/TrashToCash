@@ -31,7 +31,7 @@
                                             d="M8 4a4 4 0 100 8 4 4 0 000-8zM2 8a6 6 0 1110.89 3.476l4.817 4.817a1 1 0 01-1.414 1.414l-4.816-4.816A6 6 0 012 8z" />
                                     </svg>
                                 </div>
-                                <input type="text" id="search" placeholder="Cari data berdasarkan jenis sampah dan nama tps" name="search"
+                                <input type="text" id="search" placeholder="Cari data berdasarkan nama produk dan nama pengguna" name="search"
                                     value="{{ request('search') }}" class="bg-gray-50 border border-gray-300 text-gray-400 text-sm rounded-lg focus:ring-primary-500 focus:border-primary-500 block w-full pl-10 p-2 dark:bg-gray-700 dark:border-gray-600 dark:placeholder-gray-400 dark:text-white dark:focus:ring-primary-500 dark:focus:border-primary-500">
                             </div>
                         </form>
@@ -125,15 +125,24 @@
                         </tbody>
                     </table>
                 </div>
-                <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
+             <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
                     aria-label="Table navigation">
                     <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                        Showing
-                        <span class="font-semibold text-gray-900 dark:text-white">1-5</span>
-                        of
-                        <span class="font-semibold text-gray-900 dark:text-white">20</span>
+                        Menampilkan
+                        <span
+                            class="font-semibold text-gray-900 dark:text-white">{{ $recentSubmission->firstItem() }}</span>
+                        sampai
+                        <span
+                            class="font-semibold text-gray-900 dark:text-white">{{ $recentSubmission->lastItem() }}</span>
+                        dari
+                        <span class="font-semibold text-gray-900 dark:text-white">{{ $recentSubmission->total() }}</span>
+                        transaksi
                     </span>
-                  
+
+                    
+                    <div class="mt-7">
+                        {{ $recentSubmission->appends(request()->query())->links() }}
+                    </div>
                 </nav>
             </div>
         </div>

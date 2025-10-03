@@ -26,25 +26,36 @@ class DashboardController extends Controller
 
             return view('dashboard.admin.admin', compact('user', 'totalUsers', 'submissions', 'trashSubmissions', 'cashSubmissions'));
         } else if ($user->role === 'Mitra') {
-            $query = Transaction::where('users_id', $user->id);
+             $query = Transaction::with(['Users', 'Products'])
+                                 ->where('type', 'Barang')
+                                 ->whereHas('products', function ($q) use ($user) {
+                                     $q->where('mitra_id', $user->id);
+                                 });
+
             if ($request->filled('search')) {
                 $search = $request->input('search');
-                $query->where('trash', 'like', '%' . $search . '%')
-                    ->orWhere('description', 'like', '%' . $search . '%');
+                $query->where(function ($q) use ($search) {
+                    $q->whereHas('Products', function ($q_prod) use ($search) {
+                        $q_prod->where('name_product', 'like', '%' . $search . '%');
+                    })->orWhereHas('Users', function ($q_user) use ($search) {
+                        $q_user->where('name', 'like', '%' . $search . '%');
+                    });
+                });
+            }
+
+            $recentSubmission = $query->orderBy('created_at', 'desc')->paginate(5);
+
+            if ($recentSubmission->isEmpty() && $request->filled('search')) {
+                return redirect()->route('mitra.dashboard')->with('warning', 'Tidak ada data ditemukan! Mohon periksa kembali kata kunci Anda.');
             }
 
 
-
             $totalProduct = Product::where('mitra_id', $user->id)->count('id');
-            $recentSubmission = Transaction::with(['Users', 'Products'])->where('type', 'Barang')->whereHas('Products', function ($query) use ($user) {
-                $query->where('mitra_id', $user->id);
-            })->orderBy('created_at', 'desc')->get();
-
 
             return view('dashboard.mitra.mitra', compact('user',  'totalProduct', 'recentSubmission'));
         } else {
             $query = Transaction::where('users_id', $user->id)
-                ->where('type', 'Sampah') 
+                ->where('type', 'Sampah')
                 ->with('Tps');
 
             if ($request->filled('search')) {

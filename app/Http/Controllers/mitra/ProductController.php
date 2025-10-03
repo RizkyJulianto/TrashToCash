@@ -15,9 +15,22 @@ class ProductController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
-        $product = Product::all();
+        $user = Auth::user();
+        $query = Product::where('mitra_id', $user->id);
+
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where('name_product', 'like', '%' . $search . '%')
+                ->orWhere('description', 'like', '%' . $search . '%');
+        }
+
+        $product = $query->paginate(5); 
+
+        if ($product->isEmpty() && $request->filled('search')) {
+            return redirect()->route('list.product')->with('warning', 'Tidak ada data produk ditemukan! Mohon periksa kembali kata kunci Anda.');
+        }
         return view('dashboard.mitra.products', compact('product'));
     }
 
@@ -77,7 +90,8 @@ class ProductController extends Controller
     /**
      * Display the specified resource.
      */
-    public function show(string $id) {
+    public function show(string $id)
+    {
         $product = Product::findOrfail($id);
         return view('dashboard.mitra.detail-product', compact('product'));
     }
@@ -148,11 +162,11 @@ class ProductController extends Controller
     public function destroy(string $id)
     {
         $product = Product::findOrfail($id);
-        if($product->photo) {
+        if ($product->photo) {
             Storage::disk('public')->delete($product->photo);
         }
         $product->delete();
 
-        return redirect()->route('list.product')->with('success','Produk berhasil dihapus');
+        return redirect()->route('list.product')->with('success', 'Produk berhasil dihapus');
     }
 }
