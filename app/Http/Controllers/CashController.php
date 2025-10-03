@@ -154,6 +154,34 @@ class CashController extends Controller
         return redirect()->route('point-submission')->with('success', 'Permintaan penarikan poin berhasil diajukan!');
     }
 
+      public function cancelCashSubmission(string $id)
+    {
+        $transaction = Transaction::findOrFail($id);
+        
+        
+        if ($transaction->status === 'Pending') {
+            
+            
+            $user = $transaction->Users;
+
+            
+            $user->point += $transaction->points;
+            $user->save();
+            
+        
+            
+            $transaction->status = 'Dibatalkan';
+            $transaction->save();
+            
+        } else {
+             return redirect()->back()->with('error', 'Pengajuan penukaran poin tidak bisa dibatalkan.');
+        }
+    
+    
+    return redirect()->route('point-submission')->with('success', 'Pengajuan penukaran poin berhasil dibatalkan.');
+    }
+
+
     /**
      * Display the specified resource.
      */

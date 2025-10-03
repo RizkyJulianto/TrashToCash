@@ -67,8 +67,6 @@ class ProductSubmissionController extends Controller
 
     public function cancelPointSubmission(string $id)
     {
-
-     
         $transaction = Transaction::findOrFail($id);
         
         
@@ -81,6 +79,8 @@ class ProductSubmissionController extends Controller
             
             $user->point += $transaction->points;
             $user->save();
+
+            
             
             
             $product->stock += $transaction->quantity;
@@ -88,6 +88,7 @@ class ProductSubmissionController extends Controller
 
             
             $transaction->status = 'Dibatalkan';
+            $transaction->points = 0;
             $transaction->save();
             
         } else {

@@ -90,8 +90,22 @@ class ProductVerificationController extends Controller
         }
 
         DB::transaction(function () use ($transaction) {
+           $user = $transaction->Users;
+            $product = $transaction->Products;
+
+            
+            $user->point += $transaction->points;
+            $user->save();
+
+            
+            
+            
+            $product->stock += $transaction->quantity;
+            $product->save();
+
             
             $transaction->status = 'Gagal';
+            $transaction->points = 0;
             $transaction->save();
         });
 

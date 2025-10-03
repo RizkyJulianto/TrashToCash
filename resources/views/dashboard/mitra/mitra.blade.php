@@ -81,7 +81,7 @@
                         </div>
                     </form>
                     <x-secondary-button class="max-md:w-[50%]">
-                        <a href="{{ route('history') }}">Lihat Semua Riwayat</a>
+                        <a href="{{ route('list.product-verifications') }}">Lihat Semua Pengajuan</a>
                     </x-secondary-button>
                 </div>
                 <div class="overflow-x-auto">
@@ -153,18 +153,7 @@
                         </tbody>
                     </table>
                 </div>
-                <nav class="flex flex-col md:flex-row justify-between items-start md:items-center space-y-3 md:space-y-0 p-4"
-                    aria-label="Table navigation">
-                    <span class="text-sm font-normal text-gray-500 dark:text-gray-400">
-                        Showing
-                        <span class="font-semibold text-gray-900 dark:text-white">1-5</span>
-                        of
-                        <span class="font-semibold text-gray-900 dark:text-white">20</span>
-                    </span>
-                    <x-secondary-button>
-                        <a href="{{ route('list.product-verifications') }}">Lihat Semua Pengajuan</a>
-                    </x-secondary-button>
-                </nav>
+                
             </div>
         </div>
     </section>

@@ -76,7 +76,7 @@
                               
                                 <td class="px-4 py-3"> {{ $data->Users->name }}</td>
                                 <td
-                                    class="px-4 py-3 font-normal text-color-primary whitespace-nowrap dark:text-color-primary">
+                                    class="px-4 py-3 font-normal text-gray-900 whitespace-nowrap dark:text-color-primary">
                                     {{ $data->quantity }}</td>
                                 <td class="px-4 py-3 font-normal text-gray-900 whitespace-nowrap dark:text-white">
                                    {{ $data->created_at->format('D, d M Y')}}</td>

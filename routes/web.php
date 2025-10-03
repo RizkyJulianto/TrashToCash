@@ -56,11 +56,11 @@ Route::middleware(['auth', 'role:User'])->group(function () {
     Route::post('/dashboard/user/trash-submission/cancel/{id}', [TrashController::class, 'cancel'])->name('cancel.trash-submission');
     Route::get('/dashboard/user/tps', [ShowTpsController::class, 'show'])->name('list.tps');
     Route::get('/dashboard/user/point-submission', [PointController::class, 'index'])->name('point-submission');
+    Route::get('/dashboard/user/point-submission/details/{id}', [PointController::class, 'show'])->name('detail.point-submission');
     Route::get('/dashboard/user/point-submission/products', [ProductSubmissionController::class, 'index'])->name('products');
-    Route::get('/dashboard/user/point-submission/products/details/{id}', [PointController::class, 'show'])->name('detail.product-submission');
-    Route::get('/dashboard/user/point-submission/cash/details/{id}', [PointController::class, 'show'])->name('detail.cash-submission');
     Route::post('/dashboard/user/point-submission/products/{product}', [ProductSubmissionController::class, 'redeem'])->name('redeem.products');
     Route::post('/dashboard/user/point-submission/products/cancel/{id}', [ProductSubmissionController::class, 'cancelPointSubmission'])->name('cancel.redeem.products');
+    Route::post('/dashboard/user/point-submission/cash/cancel/{id}', [ProductSubmissionController::class, 'cancelPointSubmission'])->name('cancel.redeem.products');
     Route::get('/dashboard/user/point-submission/redeem-options', [CashController::class, 'index'])->name('redeem.options');
     Route::get('/dashboard/user/point-submission/bank', [CashController::class, 'showBankForm'])->name('form.bank-reedem');
     Route::post('/dashboard/user/point-submission/bank', [CashController::class, 'store'])->name('add.bank-redeem');

@@ -17,10 +17,30 @@ class TrashController extends Controller
     /**
      * Display a listing of the resource.
      */
-    public function index()
+    public function index(Request $request)
     {
         $user = Auth::user();
-       $recentSubmission = Transaction::with(['Users','Tps'])->where('type', 'Sampah')->where('users_id', $user->id)->orderBy('created_at','desc')->paginate(5);
+        $query = Transaction::where('users_id', $user->id)
+            ->where('type', 'Sampah')
+            ->with('Tps');
+
+        if ($request->filled('search')) {
+            $search = $request->input('search');
+            $query->where(function ($q) use ($search) {
+                $q->where('trash', 'like', '%' . $search . '%')
+                    ->orWhere('description', 'like', '%' . $search . '%');
+            });
+
+            $query->orWhereHas('Tps', function ($q) use ($search) {
+                $q->where('name_tps', 'like', '%' . $search . '%');
+            });
+        }
+
+        $recentSubmission = $query->orderBy('created_at', 'desc')->paginate(5);
+
+        if ($recentSubmission->isEmpty() && $request->filled('search')) {
+            return redirect()->route('trash-submission')->with('warning', 'Tidak ada data ditemukan! Mohon periksa kembali kata kunci Anda.');
+        }
         $tpsList = Tps::all();
         return view('dashboard.user.trash-submission', compact('recentSubmission', 'tpsList'));
     }
@@ -87,7 +107,7 @@ class TrashController extends Controller
         $qrcodeData = $transaction->id;
         $qrcodePath = 'qrcodes/' . $qrcodeData . '.svg';
         QrCode::size(200)->generate($qrcodeData, public_path('storage/' . $qrcodePath));
-        
+
         $transaction->qrcode = $transaction->id;
         $transaction->save();
 
@@ -120,7 +140,7 @@ class TrashController extends Controller
         }
     }
 
-   
+
 
     /**
      * Show the form for editing the specified resource.
